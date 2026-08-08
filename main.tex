@@ -1,0 +1,97 @@
+% !TEX program = xelatex
+% Build:  latexmk -xelatex main.tex      (จัดการ toc + bibtex ให้อัตโนมัติ)
+%
+% แบบฟอร์ม: การเสนอเค้าโครงโครงงานรายวิชา
+% สาขาวิชาวิทยาการคอมพิวเตอร์ วิทยาลัยการคอมพิวเตอร์ มหาวิทยาลัยขอนแก่น
+
+\documentclass[12pt,a4paper]{article}
+
+% ---------------------------------------------------------------
+% Fonts / language  (XeLaTeX เท่านั้น)
+% ---------------------------------------------------------------
+\usepackage{fontspec}
+% ไฟล์ต้นแบบ (เค้าโครงโครงงานdatasci.docx) ใช้ TH SarabunPSK 16pt
+% เครื่องนี้ไม่มี PSK มีแต่ TH Sarabun New ซึ่งเป็นตัวเดียวกันคนละรุ่น (metric ตรงกัน)
+% 12pt x 1.333 = 16pt
+\setmainfont{TH Sarabun New}[Scale=1.333]
+
+% ตัดบรรทัดภาษาไทย -- ถ้าไม่ใส่ ย่อหน้าภาษาไทยจะทะลุขอบกระดาษ
+\XeTeXlinebreaklocale "th"
+\XeTeXlinebreakskip = 0pt plus 1pt
+
+% ---------------------------------------------------------------
+% Page layout
+% ---------------------------------------------------------------
+% ขอบกระดาษตามไฟล์ต้นแบบ: บน/ซ้าย 1.5 นิ้ว, ล่าง/ขวา 1 นิ้ว
+\usepackage[a4paper,left=1.5in,right=1in,top=1.5in,bottom=1in]{geometry}
+\usepackage{setspace}
+\singlespacing              % ต้นแบบใช้ระยะบรรทัดเดี่ยว
+\linespread{1.15}           % เผื่อที่ให้สระบน + วรรณยุกต์ไม่ชนบรรทัดบน
+\setlength{\parindent}{1.27cm}
+\setlength{\parskip}{0pt}
+
+% ---------------------------------------------------------------
+% Common content packages
+% ---------------------------------------------------------------
+\usepackage{graphicx}
+\graphicspath{{figures/}}
+\usepackage{array}
+\renewcommand{\arraystretch}{1.3}   % เผื่อความสูงบรรทัดในตารางให้สระ/วรรณยุกต์
+\usepackage{tabularx}
+\usepackage{multirow}
+\usepackage{booktabs}
+\usepackage{amsmath,amssymb}
+\usepackage{caption}
+\usepackage{float}
+\usepackage{enumitem}
+\usepackage{url}
+
+% ---------------------------------------------------------------
+% หัวข้อ: ขนาดเท่าตัวอักษรปกติ ตัวหนา มีจุดหลังเลขข้อ ("1. ชื่อหัวข้อโครงงาน")
+% ตามไฟล์ต้นแบบ -- ไม่ใช้หัวข้อตัวใหญ่แบบ default ของ LaTeX
+% ---------------------------------------------------------------
+\usepackage{titlesec}
+\titleformat{\section}{\normalsize\bfseries}{\thesection.}{0.5em}{}
+\titleformat{\subsection}{\normalsize\bfseries}{\thesubsection}{0.5em}{}
+\titlespacing*{\section}{0pt}{1.2em}{0.4em}
+\titlespacing*{\subsection}{1.27cm}{0.6em}{0.3em}
+
+% ---------------------------------------------------------------
+% หัวข้อย่อยแบบ 3.1 / 5.1 / 6.1 ตามแบบฟอร์ม
+% ใช้:  \begin{subitems} \item ... \end{subitems}
+% ---------------------------------------------------------------
+\newlist{subitems}{enumerate}{1}
+\setlist[subitems]{label=\thesection.\arabic*,labelindent=1.27cm,leftmargin=*,
+                   itemsep=0.2em,topsep=0.2em,parsep=0pt}
+
+% ---------------------------------------------------------------
+% การอ้างอิง (APA, backend = BibTeX เพราะเครื่องนี้ไม่มี biber)
+% ---------------------------------------------------------------
+% numberedbib = ให้หัวข้อบรรณานุกรมมีเลขข้อ (กลายเป็น "11. เอกสารอ้างอิง")
+\usepackage[numberedbib]{apacite}
+\bibliographystyle{apacite}
+% apacite ตั้ง \refname ใหม่ตอน \begin{document} จึงต้อง override ด้วย \AtBeginDocument
+\AtBeginDocument{\renewcommand{\refname}{เอกสารอ้างอิง}}
+
+% ---------------------------------------------------------------
+% Links (โหลดท้ายสุด)
+% ---------------------------------------------------------------
+\usepackage[hidelinks,unicode]{hyperref}
+
+\begin{document}
+
+\input{chapter/00-cover.tex}
+
+\input{chapter/01-title.tex}
+\input{chapter/02-rationale.tex}
+\input{chapter/03-objectives.tex}
+\input{chapter/04-literature.tex}
+\input{chapter/05-methodology.tex}
+\input{chapter/06-scope.tex}
+\input{chapter/07-location.tex}
+\input{chapter/08-benefits.tex}
+\input{chapter/09-timeline.tex}
+\input{chapter/10-budget.tex}
+\input{chapter/11-references.tex}
+
+\end{document}
