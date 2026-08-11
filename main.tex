@@ -83,16 +83,14 @@
 % ---------------------------------------------------------------
 % การอ้างอิง (APA, backend = BibTeX เพราะเครื่องนี้ไม่มี biber)
 % ---------------------------------------------------------------
-% numberedbib = ให้หัวข้อบรรณานุกรมมีเลขข้อ (กลายเป็น "11. เอกสารอ้างอิง")
+% apacite เป็นข้อยกเว้นของกฎ "hyperref โหลดท้ายสุด" -- ต้องโหลด hyperref ก่อน apacite
+% ไม่งั้น \cite ในเนื้อหาจะพังด้วย "Undefined control sequence \hyper@@link"
+\usepackage[hidelinks,unicode]{hyperref}
+% numberedbib = ให้หัวข้อบรรณานุกรมมีเลขข้อ
 \usepackage[numberedbib]{apacite}
 \bibliographystyle{apacite}
 % apacite ตั้ง \refname ใหม่ตอน \begin{document} จึงต้อง override ด้วย \AtBeginDocument
 \AtBeginDocument{\renewcommand{\refname}{เอกสารอ้างอิง}}
-
-% ---------------------------------------------------------------
-% Links (โหลดท้ายสุด)
-% ---------------------------------------------------------------
-\usepackage[hidelinks,unicode]{hyperref}
 
 \begin{document}
 
