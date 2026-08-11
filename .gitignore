@@ -6,4 +6,5 @@ main.log
 main.out
 main.synctex.gz
 main.xdv
-main.big
+main.blg
+.gitignore

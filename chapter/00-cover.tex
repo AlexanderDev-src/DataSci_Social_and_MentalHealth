@@ -1,4 +1,5 @@
-% ส่วนหัวของแบบฟอร์ม -- กรอกชื่อและรหัสประจำตัวตรง \dotfill
+% ส่วนหัวของแบบฟอร์ม -- กรอกชื่อและรหัสประจำตัวลงใน \blank{...}
+% \blank{} ที่เว้นว่างไว้ จะได้เส้นเปล่า ๆ สำหรับเขียนด้วยมือ
 \begin{center}
     \textbf{การเสนอเค้าโครงโครงงานรายวิชา}
 
@@ -8,18 +9,23 @@
 
 \vspace{1em}
 
+% ใส่ป้ายกำกับไว้ใน \blank ด้วย คอลัมน์ "รหัสประจำตัว" จะได้ตรงกันทุกบรรทัด
+%
+% !! รหัสประจำตัวนักศึกษา: เว้นว่างไว้ เพราะ repo นี้เป็น public บน GitHub
+%    ตอนจะปรินต์ส่ง ค่อยพิมพ์รหัสลงใน \blank{} ข้างล่าง แล้ว "อย่า commit"
+%    (กันพลาดง่าย ๆ: พิมพ์ -> คอมไพล์ -> ปรินต์ -> git checkout chapter/00-cover.tex)
 \noindent
-ชื่อ นาย / นางสาว \hspace{0.5em}\dotfill\ รหัสประจำตัว \dotfill
+\blank[2.5cm]{ชื่อ นาย}\blank[7cm]{พัชรพล พันทวี}รหัสประจำตัว \blank[3.5cm]{}
 
 \noindent
-Mr. / Miss \dotfill
+\blank[2.5cm]{Mr.}Patcharapol Pantawee
 
 \vspace{0.8em}
 
 \noindent
-ชื่อ นาย / นางสาว \hspace{0.5em}\dotfill\ รหัสประจำตัว \dotfill
+\blank[2.5cm]{ชื่อ นางสาว}\blank[7cm]{กันติชา ชื่นปัญญาวุฒิ}รหัสประจำตัว \blank[3.5cm]{}
 
 \noindent
-Mr. / Miss \dotfill
+\blank[2.5cm]{Miss}Kanticha Chuenpanyawut
 
 \vspace{1.5em}
