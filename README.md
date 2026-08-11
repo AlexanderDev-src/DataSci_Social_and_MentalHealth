@@ -32,7 +32,7 @@
 - ไม่มีค่าว่างเลยแม้แต่ช่องเดียว
 
 โครงงานจึงเปลี่ยนมา **เก็บข้อมูลเองด้วยแบบสอบถาม** จากนักศึกษามหาวิทยาลัยขอนแก่น
-โดยใช้แบบวัดมาตรฐาน WHO-5 Well-Being Index
+โดยใช้แบบวัดมาตรฐาน DASS-21 (Depression Anxiety Stress Scales) ฉบับแปลภาษาไทย
 
 ### โครงสร้างที่เก็บ
 
@@ -93,7 +93,7 @@ Evidence found
 - Zero missing values across the entire table
 
 The project therefore switched to **collecting its own survey data** from students at
-Khon Kaen University, using the standardised WHO-5 Well-Being Index.
+Khon Kaen University, using the standardised DASS-21 (Depression Anxiety Stress Scales), Thai translation.
 
 ### Repository layout
 
