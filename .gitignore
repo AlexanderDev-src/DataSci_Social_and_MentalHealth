@@ -9,3 +9,7 @@ main.xdv
 main.blg
 .gitignore
 PRESENTATION.md
+.venv/
+__pycache__/
+.ipynb_checkpoints/
+codingpy/data/
