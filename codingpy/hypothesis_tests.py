@@ -94,7 +94,7 @@ def two_population_mean(df: pd.DataFrame, col="dass_depression") -> None:
     male = df.loc[df["gender"] == "Male", col].dropna()
     female = df.loc[df["gender"] == "Female", col].dropna()
     levene = stats.levene(male, female)
-    equal_var = levene.pvalue >= ALPHA
+    equal_var = bool(levene.pvalue >= ALPHA)
     t, p = stats.ttest_ind(male, female, equal_var=equal_var)
     mw = stats.mannwhitneyu(male, female)
     kind = "pooled-variance" if equal_var else "Welch"
@@ -117,7 +117,7 @@ def two_population_mean(df: pd.DataFrame, col="dass_depression") -> None:
 
 # %%
 def k_population_mean(df: pd.DataFrame, col="dass_anxiety") -> None:
-    groups = [g[col].dropna().values for _, g in df.groupby("content_group")]
+    groups = [g[col].dropna().to_numpy(dtype=float) for _, g in df.groupby("content_group")]
     names = sorted(df["content_group"].dropna().unique())
     levene = stats.levene(*groups)
     F, p = stats.f_oneway(*groups)

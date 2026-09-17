@@ -1,5 +1,7 @@
 {
   "venvPath": ".",
   "venv": ".venv",
-  "extraPaths": ["codingpy"]
+  "extraPaths": ["codingpy"],
+
+  "typeCheckingMode": "standard"
 }
