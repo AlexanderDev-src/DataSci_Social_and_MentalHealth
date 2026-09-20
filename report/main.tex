@@ -1,0 +1,104 @@
+% !TEX program = xelatex
+% Build:  cd report && latexmk -xelatex main.tex
+%
+% รายงานฉบับสมบูรณ์ 5 บท -- ใช้ preamble ชุดเดียวกับ ../main.tex (เค้าโครง)
+% ต่างกันสองอย่าง: ใช้ documentclass report เพื่อให้มี \chapter
+% และดึงรูปกับบรรณานุกรมจากโฟลเดอร์แม่ ไม่ต้องคัดลอกไฟล์มาซ้ำ
+
+\documentclass[12pt,a4paper]{report}
+
+% ---------------------------------------------------------------
+% Fonts / language  (XeLaTeX เท่านั้น)
+% ---------------------------------------------------------------
+\usepackage{fontspec}
+\setmainfont{TH Sarabun New}[Scale=1.333]
+
+% ตัดบรรทัดภาษาไทย -- ถ้าไม่ใส่ ย่อหน้าภาษาไทยจะทะลุขอบกระดาษ
+\XeTeXlinebreaklocale "th"
+\XeTeXlinebreakskip = 0pt plus 1pt
+
+% ---------------------------------------------------------------
+% Page layout
+% ---------------------------------------------------------------
+\usepackage[a4paper,left=1.5in,right=1in,top=1.5in,bottom=1in]{geometry}
+\usepackage{setspace}
+\singlespacing
+\linespread{1.15}           % เผื่อที่ให้สระบน + วรรณยุกต์ไม่ชนบรรทัดบน
+\setlength{\parindent}{1.27cm}
+\setlength{\parskip}{0pt}
+
+% ---------------------------------------------------------------
+% Common content packages
+% ---------------------------------------------------------------
+\usepackage{graphicx}
+% รูปอยู่ที่ ../figures -- สคริปต์ใน codingpy/ เขียนลงที่นั่นที่เดียว
+\graphicspath{{../figures/}{figures/}}
+\usepackage{array}
+\renewcommand{\arraystretch}{1.3}
+\usepackage{tabularx}
+\newcolumntype{L}{>{\raggedright\arraybackslash}X}
+\usepackage{multirow}
+\usepackage{booktabs}
+\usepackage{amsmath,amssymb}
+\usepackage{caption}
+\captionsetup[table]{name=ตารางที่,labelsep=space}
+\captionsetup[figure]{name=รูปที่,labelsep=space}
+\usepackage{float}
+\usepackage{enumitem}
+\usepackage{url}
+
+% ---------------------------------------------------------------
+% หัวบท: "บทที่ 1" อยู่กลางหน้า บรรทัดถัดมาเป็นชื่อบท ตามรูปแบบรายงานไทย
+% ---------------------------------------------------------------
+\usepackage{titlesec}
+\titleformat{\chapter}[display]
+    {\centering\bfseries\fontsize{16pt}{20pt}\selectfont}
+    {บทที่ \thechapter}{0.6em}{}
+\titlespacing*{\chapter}{0pt}{-1em}{1.5em}
+
+\titleformat{\section}{\normalsize\bfseries}{\thesection}{0.5em}{}
+\titleformat{\subsection}{\normalsize\bfseries}{\thesubsection}{0.5em}{}
+\titlespacing*{\section}{0pt}{1.2em}{0.4em}
+\titlespacing*{\subsection}{1.27cm}{0.6em}{0.3em}
+
+% ชื่อส่วนมาตรฐานเป็นภาษาไทย
+\renewcommand{\contentsname}{สารบัญ}
+\renewcommand{\listtablename}{สารบัญตาราง}
+\renewcommand{\listfigurename}{สารบัญรูป}
+\renewcommand{\tablename}{ตารางที่}
+\renewcommand{\figurename}{รูปที่}
+\renewcommand{\appendixname}{ภาคผนวก}
+
+% ---------------------------------------------------------------
+% การอ้างอิง (APA, backend = BibTeX เพราะเครื่องนี้ไม่มี biber)
+% hyperref ต้องมาก่อน apacite ไม่งั้น \cite พังด้วย \hyper@@link
+% ---------------------------------------------------------------
+\usepackage[hidelinks,unicode]{hyperref}
+\usepackage[numberedbib]{apacite}
+\bibliographystyle{apacite}
+\AtBeginDocument{\renewcommand{\bibname}{เอกสารอ้างอิง}}
+
+\begin{document}
+
+% ---- ส่วนหน้า: ปกและบทคัดย่อ ไม่นับเลขบท ----
+\input{chapter/00-cover.tex}
+\input{chapter/00-abstract.tex}
+
+\tableofcontents
+\listoftables
+\listoffigures
+\clearpage
+
+% ---- เนื้อรายงาน 5 บท ----
+\input{chapter/01-introduction.tex}
+\input{chapter/02-literature.tex}
+\input{chapter/03-methodology.tex}
+\input{chapter/04-results.tex}
+\input{chapter/05-conclusion.tex}
+
+% ---- เอกสารอ้างอิงและภาคผนวก ----
+% ใช้ไฟล์ .bib ร่วมกับเค้าโครง จะได้ไม่ต้องแก้สองที่
+\bibliography{../references}
+\input{chapter/06-appendix.tex}
+
+\end{document}
