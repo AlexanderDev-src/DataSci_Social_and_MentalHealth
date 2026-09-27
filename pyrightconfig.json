@@ -3,5 +3,11 @@
   "venv": ".venv",
   "extraPaths": ["codingpy"],
 
-  "typeCheckingMode": "standard"
+  "typeCheckingMode": "standard",
+
+  // pandas-stubs types every itertuples() field as the broad "Scalar" union
+  // (str | bytes | date | int | float | ...), so float(row.p) and row.a + row.b
+  // get flagged even though the values are plain numbers at runtime.
+  "reportOperatorIssue": "none",
+  "reportArgumentType": "none"
 }

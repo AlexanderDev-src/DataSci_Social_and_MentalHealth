@@ -93,8 +93,14 @@ def dimension_stats(df: pd.DataFrame) -> pd.DataFrame:
     group = money_group(df)
     rows = []
     for col, dimension in DIMENSIONS.items():
-        d = df[[col, FINANCE, BENCHMARK]].assign(group=group).dropna(subset=[col, "group"])
-        parts = [d.loc[d["group"] == name, col].to_numpy(dtype=float) for name in GROUPS]
+        d = (
+            df[[col, FINANCE, BENCHMARK]]
+            .assign(group=group)
+            .dropna(subset=[col, "group"])
+        )
+        parts = [
+            d.loc[d["group"] == name, col].to_numpy(dtype=float) for name in GROUPS
+        ]
         F, p = stats.f_oneway(*parts)
         kw = stats.kruskal(*parts)
         money = d[[col, FINANCE]].dropna()
@@ -103,7 +109,10 @@ def dimension_stats(df: pd.DataFrame) -> pd.DataFrame:
             {
                 "dimension": dimension,
                 **{f"mean_{name}": part.mean() for name, part in zip(GROUPS, parts)},
-                **{f"se_{name}": part.std(ddof=1) / np.sqrt(len(part)) for name, part in zip(GROUPS, parts)},
+                **{
+                    f"se_{name}": part.std(ddof=1) / np.sqrt(len(part))
+                    for name, part in zip(GROUPS, parts)
+                },
                 **{f"n_{name}": len(part) for name, part in zip(GROUPS, parts)},
                 "F": F,
                 "p": p,
@@ -233,7 +242,9 @@ def plot(table: pd.DataFrame) -> None:
         0.02,
         "เส้นบนแท่งคือค่าคลาดเคลื่อนมาตรฐาน คะแนนยิ่งสูงยิ่งมีอาการมาก  "
         f"(n = {total} คน แบ่งเป็น "
-        + ", ".join(f"{GROUP_TH[name]} {int(table.iloc[0][f'n_{name}'])}" for name in GROUPS)
+        + ", ".join(
+            f"{GROUP_TH[name]} {int(table.iloc[0][f'n_{name}'])}" for name in GROUPS
+        )
         + ")",
         fontsize=12,
         color="#52514e",
