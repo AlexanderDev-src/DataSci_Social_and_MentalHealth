@@ -9,6 +9,7 @@ main.xdv
 main.blg
 .gitignore
 PRESENTATION.md
+TODO.md
 .venv/
 __pycache__/
 .ipynb_checkpoints/
