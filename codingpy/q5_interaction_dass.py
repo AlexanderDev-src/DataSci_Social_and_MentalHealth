@@ -10,7 +10,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 from clean_data import CLEAN_PATH
-from config import load_data, setup
+from config import load_data, passed_attention, setup
 from qr2 import DIMENSIONS, thai_font
 from rich_console import console
 from scipy import stats
@@ -38,6 +38,18 @@ def analysis(df: pd.DataFrame) -> pd.DataFrame:
             console.print(f"{int_label} x {dim_label}: r = {r:.3f}, p = {p:.4f}")
         results.append(row)
     return pd.DataFrame(results)
+
+
+def usage_vs_sleep(df: pd.DataFrame) -> None:
+    """Methodology question 5: do heavier users sleep less, or sleep worse?"""
+    for col in ["sleep_hours", "sleep_quality"]:
+        d = df[["social_media_hours", col]].dropna()
+        r, p = stats.pearsonr(d["social_media_hours"], d[col])
+        rho = stats.spearmanr(d["social_media_hours"], d[col]).statistic
+        console.print(
+            f"{INTERACTION_COLS['social_media_hours']} x {INTERACTION_COLS[col]}: "
+            f"r = {r:.3f}, p = {p:.4f}, rho = {rho:.3f}, n = {len(d)}"
+        )
 
 
 def plot(df: pd.DataFrame) -> None:
@@ -76,7 +88,8 @@ def plot(df: pd.DataFrame) -> None:
 
 if __name__ == "__main__":
     setup()
-    df = load_data(CLEAN_PATH)
+    df = passed_attention(load_data(CLEAN_PATH))
     console.print(f"[green]n = {len(df)}[/green] rows from {CLEAN_PATH}")
     analysis(df)
+    usage_vs_sleep(df)
     plot(df)

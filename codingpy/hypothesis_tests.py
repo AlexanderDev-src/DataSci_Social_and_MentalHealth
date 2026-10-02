@@ -15,7 +15,7 @@ Run: python hypothesis_tests.py   (needs scipy: `uv add scipy`)
 import numpy as np
 import pandas as pd
 from clean_data import CLEAN_PATH
-from config import load_data, setup
+from config import load_data, passed_attention, setup
 from rich_console import console
 from scipy import stats
 
@@ -68,8 +68,8 @@ def one_population_mean(df: pd.DataFrame) -> None:
         f"t = {t:.3f}",
         p,
         f"mean sleep {x.mean():.2f} h differs from {SLEEP_REFERENCE} h",
-        "Shapiro p < .05, but n = 120 so the CLT covers the t-test; "
-        f"Wilcoxon signed-rank agrees (p = {stats.wilcoxon(x - SLEEP_REFERENCE).pvalue:.2g})",
+        f"Shapiro p = {stats.shapiro(x).pvalue:.2g}, but n = {len(x)} so the CLT covers "
+        f"the t-test; Wilcoxon signed-rank agrees (p = {stats.wilcoxon(x - SLEEP_REFERENCE).pvalue:.2g})",
     )
 
 
@@ -109,9 +109,8 @@ def two_population_mean(df: pd.DataFrame, col="dass_depression") -> None:
         f"t = {t:.3f}, Cohen's d = {cohens_d(male, female):.2f}",
         p,
         f"male depression mean is {male.mean() - female.mean():.2f} points higher",
-        f"Mann-Whitney U agrees (p = {mw.pvalue:.4f}); result is borderline and "
-        "would not survive a Bonferroni correction across the three subscales "
-        f"(alpha = {ALPHA / 3:.4f})",
+        f"Mann-Whitney U agrees (p = {mw.pvalue:.4f}); the Bonferroni line across "
+        f"the three subscales is alpha = {ALPHA / 3:.4f}",
     )
 
 
@@ -135,15 +134,15 @@ def k_population_mean(df: pd.DataFrame, col="dass_anxiety") -> None:
         f"F = {F:.3f}, eta^2 = {ss_b / ss_t:.4f}",
         p,
         "no detectable difference in anxiety between content groups",
-        f"Kruskal-Wallis agrees (p = {kw.pvalue:.4f}); the News group has only "
-        "11 respondents, so power against a small difference is low",
+        f"Kruskal-Wallis agrees (p = {kw.pvalue:.4f}); the smallest group has only "
+        f"{min(len(g) for g in groups)} respondents, so power against a small difference is low",
     )
 
 
 # %%
 if __name__ == "__main__":
     setup()
-    df = load_data(CLEAN_PATH)
+    df = passed_attention(load_data(CLEAN_PATH))
     console.print(f"[green]n = {len(df)}[/green] rows from {CLEAN_PATH}")
     one_population_mean(df)
     one_population_proportion(df)
