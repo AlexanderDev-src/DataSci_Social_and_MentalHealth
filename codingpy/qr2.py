@@ -25,7 +25,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 from clean_data import CLEAN_PATH
-from config import SEED, load_data, setup
+from config import SEED, load_data, passed_attention, setup
 from rich_console import console
 from scipy import stats
 
@@ -291,7 +291,7 @@ def plot(table: pd.DataFrame) -> None:
 # %%
 if __name__ == "__main__":
     setup()
-    df = load_data(CLEAN_PATH)
+    df = passed_attention(load_data(CLEAN_PATH))
     console.print(f"[green]n = {len(df)}[/green] rows from {CLEAN_PATH}")
     table = correlation_table(df)
     report(table)

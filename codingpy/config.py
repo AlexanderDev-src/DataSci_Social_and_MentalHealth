@@ -15,3 +15,8 @@ def setup():
 
 def load_data(path: str = DATA_PATH) -> pd.DataFrame:
     return pd.read_csv(path)
+
+
+def passed_attention(df: pd.DataFrame) -> pd.DataFrame:
+    """Respondents who passed the attention check; the methodology drops the rest."""
+    return df[df["attention_check"] == 1].reset_index(drop=True)

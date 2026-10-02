@@ -1,12 +1,19 @@
-main.aux
-main.bbl
-main.fdb_latexmk
-main.fls
-main.log
-main.out
-main.synctex.gz
-main.xdv
-main.blg
+# LaTeX build files (proposal and report/)
+*.aux
+*.bbl
+*.blg
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.synctex.gz
+*.xdv
+*.toc
+*.lof
+*.lot
+# compiled PDFs; the shared copies are Proposol-Done.pdf and Full-report-0209Update.pdf
+/main.pdf
+/report/main.pdf
 .gitignore
 PRESENTATION.md
 TODO.md
