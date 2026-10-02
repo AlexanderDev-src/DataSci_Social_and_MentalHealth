@@ -19,6 +19,20 @@ npm run check      # ตรวจชนิดข้อมูลทั้ง .ts 
 
 ฟอนต์ติดตั้งผ่าน npm (Noto Sans Thai และ Sarabun) จึงใช้งานได้แม้ห้องนำเสนอไม่มีอินเทอร์เน็ต
 
+## เผยแพร่บน GitHub Pages
+
+เว็บที่เผยแพร่แล้วอยู่ที่ https://alexanderdev-src.github.io/DataSci_Social_and_MentalHealth/
+
+workflow `.github/workflows/deploy-presentation.yml` ที่ root ของที่เก็บจะรันเทสต์ ตรวจชนิดข้อมูล build แล้วเผยแพร่ให้เอง
+ทุกครั้งที่ push ไฟล์ในโฟลเดอร์นี้ขึ้น `main` หรือกด Run workflow เองในแท็บ Actions ก็ได้
+ถ้าเทสต์หรือการตรวจชนิดข้อมูลไม่ผ่าน เว็บจะไม่ถูกเผยแพร่ และเวอร์ชันเดิมยังคงอยู่
+
+GitHub Pages เปิดเว็บที่ `/DataSci_Social_and_MentalHealth/` ไม่ใช่ `/` workflow จึงส่ง `SITE_URL` และ `BASE_PATH`
+ให้ `astro.config.mjs` ตอน build ถ้ารันในเครื่องโดยไม่ตั้งสองค่านี้ เว็บจะอยู่ที่ `/` ตามปกติ
+ลิงก์ไฟล์ใน `public/` จึงต้องเขียนแบบไม่มี `/` นำหน้า เช่น `favicon.svg`
+
+ตั้งค่าครั้งแรกครั้งเดียว: Settings → Pages → Source เลือก GitHub Actions
+
 ## ปุ่มลัดระหว่างนำเสนอ
 
 | ปุ่ม | ผล |
