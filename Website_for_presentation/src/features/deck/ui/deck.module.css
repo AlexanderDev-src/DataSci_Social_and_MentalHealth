@@ -1,0 +1,73 @@
+.deck {
+  position: fixed;
+  inset: auto 0 0 0;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.progress {
+  height: 3px;
+  background: var(--ink);
+  transform-origin: left;
+  transform: scaleX(var(--progress));
+  transition: transform 400ms var(--ease-out);
+}
+
+.bar {
+  position: absolute;
+  right: var(--gutter);
+  bottom: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  pointer-events: auto;
+  font-size: var(--step--1);
+  color: var(--ink-soft);
+  /* quiet until the presenter reaches for it */
+  opacity: 0.45;
+  transition: opacity 200ms var(--ease-out);
+}
+
+.bar:hover,
+.bar:focus-within {
+  opacity: 1;
+}
+
+.bar button {
+  border: 0;
+  background: none;
+  padding: 0.2rem 0.5rem;
+  border-radius: var(--radius-control);
+  cursor: pointer;
+  color: var(--ink);
+  font-family: var(--font-display);
+  font-stretch: 87.5%;
+  font-weight: 600;
+}
+
+.bar button:hover {
+  background: var(--rule);
+}
+
+.bar button:disabled {
+  color: var(--ink-faint);
+  cursor: default;
+  background: none;
+}
+
+.counter {
+  min-width: 4.5ch;
+  text-align: center;
+  color: var(--ink);
+}
+
+@media (max-width: 899px) {
+  .bar {
+    right: 16px;
+    bottom: 0.5rem;
+    opacity: 1;
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    border-radius: var(--radius-control);
+  }
+}

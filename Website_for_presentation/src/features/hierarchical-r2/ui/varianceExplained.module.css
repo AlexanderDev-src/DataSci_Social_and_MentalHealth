@@ -1,0 +1,20 @@
+.hatchBack {
+  fill: var(--marker);
+}
+
+.hatchLine {
+  stroke: var(--ink);
+  stroke-width: 1.5;
+}
+
+.value {
+  fill: var(--ink);
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.dimension {
+  fill: var(--ink);
+  font-size: 18px;
+  font-weight: 650;
+}

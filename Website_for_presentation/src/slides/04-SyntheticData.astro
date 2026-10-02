@@ -1,0 +1,14 @@
+---
+import Slide from "@features/deck/ui/Slide.astro";
+import { SyntheticCheck } from "@features/data-quality";
+---
+
+<Slide id="kaggle" title="ข้อมูลสาธารณะ ที่หามาได้ เป็นข้อมูลสังเคราะห์">
+  <p>
+    ก่อนเก็บข้อมูลเอง เราตรวจชุดข้อมูล Kaggle ในหัวข้อนี้ และพบร่องรอยว่าสร้างด้วยโปรแกรม ไม่ได้มาจากคนจริง
+    <span class="marker">จึงเปลี่ยนมาเก็บแบบสอบถามเองจากนักศึกษา มข.</span>
+  </p>
+  <p class="note">สลับดูทศนิยมของชั่วโมงใช้งาน คนจริงชอบตอบเลขกลมอย่าง 7 หรือ 7.5 ส่วนโปรแกรมสุ่มให้ทุกหลักเท่ากัน</p>
+
+  <SyntheticCheck slot="stage" client:visible />
+</Slide>

@@ -1,0 +1,24 @@
+---
+import Slide from "@features/deck/ui/Slide.astro";
+import { SeverityThreshold } from "@features/severity";
+import { RELIABILITY } from "@data/survey";
+import { DIMENSION_LABEL, DIMENSIONS } from "@domain/dass";
+import { formatNumber } from "@shared/format";
+---
+
+<Slide id="severity" title="2 ใน 3 คน มีความวิตกกังวล เกินระดับปกติ">
+  <p>
+    DASS-21 มี 21 ข้อ แบ่งเป็น 3 มิติ มิติละ 7 ข้อ คะแนนแต่ละมิติเต็ม 42
+    และมีเกณฑ์แบ่งความรุนแรง 5 ระดับแยกกันในแต่ละมิติ
+  </p>
+  <p>
+    <span class="marker">ความวิตกกังวลเป็นมิติที่ผู้ตอบอยู่นอกระดับปกติมากที่สุด</span>
+    ขณะที่ซึมเศร้าและเครียด ส่วนใหญ่อยู่ในระดับปกติ
+  </p>
+  <p class="note">
+    ความเชื่อมั่นของแบบวัด (แอลฟาของครอนบาค):
+    {DIMENSIONS.map((d) => `${DIMENSION_LABEL[d]} ${formatNumber(RELIABILITY[d].alpha, 3)}`).join(", ")}
+  </p>
+
+  <SeverityThreshold slot="stage" client:visible />
+</Slide>

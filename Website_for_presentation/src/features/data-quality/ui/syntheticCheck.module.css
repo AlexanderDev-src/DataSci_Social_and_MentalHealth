@@ -1,0 +1,44 @@
+.bar {
+  fill: var(--ink);
+}
+
+.value {
+  fill: var(--ink);
+  font-weight: 600;
+}
+
+.uniform {
+  stroke: var(--ink-soft);
+  stroke-width: 1.5;
+  stroke-dasharray: 6 5;
+}
+
+.uniformLabel {
+  fill: var(--ink-soft);
+}
+
+.checks {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem 2rem;
+  margin: 0;
+}
+
+.checks dt {
+  font-size: var(--step--1);
+  color: var(--ink-soft);
+}
+
+.checks dd {
+  margin: 0.15rem 0 0;
+  font-family: var(--font-display);
+  font-stretch: 87.5%;
+  font-weight: 650;
+  line-height: 1.35;
+}
+
+@media (max-width: 899px) {
+  .checks {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

@@ -1,0 +1,18 @@
+---
+import Slide from "@features/deck/ui/Slide.astro";
+import { VarianceExplained } from "@features/hierarchical-r2";
+---
+
+<Slide id="q6" question="คำถามวิจัยข้อ 6" title="คุมปัจจัยอื่นแล้ว โซเชียลมีเดีย เพิ่ม R² ได้ไม่ถึง 5%">
+  <p>
+    สมการขั้นที่ 1 ใส่ตัวแปรควบคุม 6 ตัว ขั้นที่ 2 เพิ่มชั่วโมงใช้งานและการติดตามข่าว
+    แล้วดูว่า R² เพิ่มขึ้นเท่าไร
+  </p>
+  <p>
+    <span class="marker">เพิ่มมากที่สุดคือ 0.045 ที่ความวิตกกังวล</span>
+    และไม่มีนัยสำคัญในมิติใด (p = 0.100 ก่อนปรับ, 0.301 หลังปรับ Bonferroni)
+  </p>
+  <p class="note">VIF ของตัวแปรต้นทั้งแปดอยู่ระหว่าง 1.05 ถึง 1.54 ไม่มีปัญหาตัวแปรซ้ำซ้อนกัน</p>
+
+  <VarianceExplained slot="stage" client:visible />
+</Slide>

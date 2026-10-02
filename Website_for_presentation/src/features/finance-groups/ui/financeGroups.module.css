@@ -1,0 +1,15 @@
+.mean {
+  fill: var(--ink);
+  font-size: 24px;
+  font-weight: 750;
+}
+
+.group {
+  fill: var(--ink);
+  font-size: 18px;
+  font-weight: 650;
+}
+
+.detail {
+  fill: var(--ink-soft);
+}

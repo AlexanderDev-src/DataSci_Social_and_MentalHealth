@@ -1,0 +1,31 @@
+.chart {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 64vh;
+  overflow: visible;
+  font-family: var(--font-display);
+  font-stretch: 87.5%;
+  font-variant-numeric: tabular-nums;
+  font-size: 15px;
+  fill: var(--ink-soft);
+}
+
+.axis text {
+  fill: var(--ink-soft);
+}
+
+.axis .title {
+  fill: var(--ink);
+  font-weight: 600;
+}
+
+.baseline {
+  stroke: var(--rule-strong);
+  stroke-width: 1.5;
+}
+
+.grid {
+  stroke: var(--rule);
+  stroke-width: 1;
+}

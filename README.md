@@ -71,6 +71,7 @@
 | `Info.md` | ร่างเนื้อหาเค้าโครงก่อนแปลงเป็น LaTeX |
 | `codingpy/` | โค้ด Python ทั้งหมด (จัดการแพ็กเกจด้วย uv) |
 | `codingpy/data/` | ข้อมูลดิบและข้อมูลที่ทำความสะอาดแล้ว **ไม่ถูก commit** |
+| `Website_for_presentation/` | เว็บสไลด์นำเสนอที่ปรับค่ากราฟได้ระหว่างนำเสนอ (Astro + React) วิธีรันอยู่ใน README ของโฟลเดอร์ |
 
 ### ไฟล์โค้ดใน `codingpy/`
 
@@ -92,6 +93,7 @@
 | `hypothesis_tests.py` | การทดสอบสมมติฐาน 4 แบบตามที่รายวิชากำหนด |
 | `analysis.py` | กราฟ 3 มิติ โซเชียลมีเดีย × การนอน → คะแนน DASS รวม (ใช้ผู้ตอบทั้ง 121 คน) |
 | `animation.py` | แอนิเมชัน what-if เพิ่มชั่วโมงการใช้โซเชียลมีเดียทีละชั่วโมง (ใช้ผู้ตอบทั้ง 121 คน) |
+| `export_presentation.py` | ส่งออกค่าสถิติรวม (ไม่มีข้อมูลรายคน) ให้เว็บใน `Website_for_presentation/` |
 
 ### วิธีคอมไพล์เอกสาร
 
@@ -196,6 +198,7 @@ Chapter 4 of the report has the full results.
 | `Info.md` | Proposal draft before conversion to LaTeX |
 | `codingpy/` | All Python code (packages managed with uv) |
 | `codingpy/data/` | Raw and cleaned survey data, **not committed** |
+| `Website_for_presentation/` | Presentation site with charts the presenter adjusts live (Astro + React); its README explains how to run it |
 
 ### Code in `codingpy/`
 
@@ -217,6 +220,7 @@ Chapter 4 of the report has the full results.
 | `hypothesis_tests.py` | The four hypothesis tests the course requires |
 | `analysis.py` | 3D plot: social media × sleep → DASS-21 total (all 121 respondents) |
 | `animation.py` | What-if animation: raise social media use one hour at a time (all 121 respondents) |
+| `export_presentation.py` | Writes the summary statistics (no respondent rows) that `Website_for_presentation/` draws from |
 
 ### Building the documents
 

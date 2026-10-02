@@ -1,0 +1,37 @@
+.curve {
+  fill: none;
+  stroke: var(--ink);
+  stroke-width: 3.5;
+}
+
+.target {
+  stroke: var(--ink-soft);
+  stroke-width: 1.5;
+  stroke-dasharray: 6 5;
+}
+
+.targetLabel {
+  fill: var(--ink-soft);
+}
+
+.study {
+  stroke: var(--marker);
+  stroke-width: 10;
+  stroke-opacity: 0.8;
+}
+
+.studyLabel {
+  fill: var(--ink);
+  font-weight: 650;
+}
+
+.guide {
+  stroke: var(--ink-faint);
+  stroke-dasharray: 3 4;
+}
+
+.point {
+  fill: var(--ink);
+  stroke: var(--paper);
+  stroke-width: 3;
+}

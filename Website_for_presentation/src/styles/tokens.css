@@ -1,0 +1,86 @@
+/*
+ * Design tokens. Every colour, face and size the slides use is defined here once.
+ *
+ * Paper and ballpoint-navy ink, like the printed report. The three DASS-21 colours
+ * are the ones the report's figures use, so a chart on screen reads the same as the
+ * figure in the PDF. Highlighter yellow marks the one finding a slide is about.
+ */
+
+:root {
+  color-scheme: light;
+
+  --paper: #f7f8fb;
+  --paper-raised: #ffffff;
+  --ink: #18214d;
+  --ink-soft: #4a5274;
+  --ink-faint: #8b91ab;
+  --rule: #d9dce6;
+  --rule-strong: #b7bccd;
+  --marker: #ffe45c;
+
+  /* DASS-21 dimensions: fill colours for charts, darker twins for text */
+  --dim-depression: #2a78d6;
+  --dim-anxiety: #eb6834;
+  --dim-stress: #1baf7a;
+  --dim-depression-ink: #1f5faf;
+  --dim-anxiety-ink: #b8471a;
+  --dim-stress-ink: #0f7a54;
+
+  --font-display: "Noto Sans Thai Variable", "Noto Sans Thai", "Sarabun", sans-serif;
+  --font-body: "Sarabun", "Noto Sans Thai Variable", "Noto Sans Thai", sans-serif;
+
+  /*
+   * Type scale: perfect fourth (1.333). The root size follows the slide, not the
+   * device: 1rem is about 26px on a 1080p projector and never below 16px.
+   */
+  --step--1: 0.75rem;
+  --step-0: 1rem;
+  --step-1: 1.333rem;
+  --step-2: 1.777rem;
+  --step-3: 2.369rem;
+  --step-4: 3.157rem;
+  --step-5: 4.209rem;
+
+  --gutter: clamp(16px, 6vw, 8rem);
+  --radius-control: 6px;
+  --focus-ring: 0 0 0 3px var(--paper), 0 0 0 6px var(--ink);
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --paper: #10142b;
+    --paper-raised: #171c3a;
+    --ink: #eef0fa;
+    --ink-soft: #b3b9d6;
+    --ink-faint: #7a81a3;
+    --rule: #2a3159;
+    --rule-strong: #444c7a;
+    --marker: #8a7414;
+    --dim-depression: #5b9bea;
+    --dim-anxiety: #f2885a;
+    --dim-stress: #3ccb95;
+    --dim-depression-ink: #8ab8f2;
+    --dim-anxiety-ink: #f6a982;
+    --dim-stress-ink: #6fdcb1;
+  }
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --paper: #10142b;
+  --paper-raised: #171c3a;
+  --ink: #eef0fa;
+  --ink-soft: #b3b9d6;
+  --ink-faint: #7a81a3;
+  --rule: #2a3159;
+  --rule-strong: #444c7a;
+  --marker: #8a7414;
+  --dim-depression: #5b9bea;
+  --dim-anxiety: #f2885a;
+  --dim-stress: #3ccb95;
+  --dim-depression-ink: #8ab8f2;
+  --dim-anxiety-ink: #f6a982;
+  --dim-stress-ink: #6fdcb1;
+}

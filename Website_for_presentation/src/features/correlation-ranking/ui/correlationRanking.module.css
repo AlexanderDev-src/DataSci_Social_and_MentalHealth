@@ -1,0 +1,35 @@
+.noise {
+  fill: var(--rule);
+  fill-opacity: 0.6;
+}
+
+.noiseLabel {
+  fill: var(--ink-soft);
+}
+
+.zero {
+  stroke: var(--ink-faint);
+  stroke-width: 1.5;
+}
+
+/* the two social media rows: what the project asks about */
+.focusRow {
+  fill: var(--marker);
+  fill-opacity: 0.4;
+}
+
+.label {
+  fill: var(--ink-soft);
+  font-size: 17px;
+}
+
+.labelFocus {
+  fill: var(--ink);
+  font-size: 17px;
+  font-weight: 700;
+}
+
+.value {
+  fill: var(--ink);
+  font-weight: 600;
+}

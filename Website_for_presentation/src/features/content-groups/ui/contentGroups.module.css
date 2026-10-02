@@ -1,0 +1,26 @@
+/* inside the top of each bar, clear of the dashed overall line */
+.mean {
+  fill: var(--paper);
+  font-weight: 700;
+  font-size: 18px;
+}
+
+.group {
+  fill: var(--ink);
+  font-weight: 600;
+}
+
+.count {
+  fill: var(--ink-soft);
+}
+
+.overall {
+  stroke: var(--ink);
+  stroke-width: 1.5;
+  stroke-dasharray: 6 5;
+}
+
+.overallLabel {
+  fill: var(--ink);
+  font-weight: 600;
+}

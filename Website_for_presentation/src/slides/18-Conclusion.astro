@@ -1,0 +1,70 @@
+---
+import Slide from "@features/deck/ui/Slide.astro";
+---
+
+<Slide id="conclusion" title="เวลาบนโซเชียลมีเดีย ไม่ใช่ตัวการหลัก ในกลุ่มนี้" layout="stacked">
+  <p>คำตอบสั้น ๆ ของคำถามบนหน้าแรกคือ ไม่พบว่ายิ่งใช้นานยิ่งเครียด</p>
+
+  <div class="columns" slot="stage">
+    <section>
+      <h3>สิ่งที่พบ</h3>
+      <ul>
+        <li>ชั่วโมงใช้งานและประเภทเนื้อหาไม่สัมพันธ์กับคะแนนทั้งสามมิติ</li>
+        <li>การติดตามข่าวเชิงลบเอียงไปทางความวิตกกังวลตามที่คาด แต่ยังไม่มีนัยสำคัญ</li>
+        <li>ความเพียงพอทางการเงิน คุณภาพการนอน และความกดดันจากการเรียน สัมพันธ์กับคะแนนชัดกว่า</li>
+      </ul>
+    </section>
+    <section>
+      <h3>ข้อจำกัด</h3>
+      <ul>
+        <li>เก็บข้อมูลครั้งเดียว บอกได้แค่ความสัมพันธ์ ไม่ใช่เหตุและผล</li>
+        <li>107 คนจากการเลือกตามสะดวก ตรวจความสัมพันธ์ขนาดเล็กไม่ได้ และอ้างไปทั้งมหาวิทยาลัยไม่ได้</li>
+        <li>ทุกคนใช้อย่างน้อย 4 ชั่วโมงต่อวัน ไม่มีกลุ่มที่ใช้น้อยจริง ๆ ให้เทียบ</li>
+      </ul>
+    </section>
+    <p class="hotline">
+      ผลนี้ใช้ในระดับกลุ่ม ไม่ใช่การวินิจฉัยรายบุคคล ใครกังวลเรื่องสุขภาพจิต
+      โทรสายด่วนสุขภาพจิต <strong class="num">1323</strong> ได้ตลอด 24 ชั่วโมง
+    </p>
+  </div>
+</Slide>
+
+<style>
+  .columns {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 2rem 4rem;
+  }
+
+  h3 {
+    margin-bottom: 0.6rem;
+  }
+
+  ul {
+    margin: 0;
+    padding-left: 1.1em;
+  }
+
+  li + li {
+    margin-top: 0.5em;
+  }
+
+  .hotline {
+    grid-column: 1 / -1;
+    border-top: 3px solid var(--ink);
+    padding-top: 1rem;
+    max-width: 48em;
+  }
+
+  .hotline strong {
+    font-size: var(--step-2);
+    font-weight: 800;
+    line-height: 1;
+  }
+
+  @media (max-width: 899px) {
+    .columns {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+</style>

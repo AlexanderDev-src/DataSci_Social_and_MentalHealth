@@ -1,0 +1,117 @@
+@import "@fontsource-variable/noto-sans-thai/standard.css";
+@import "@fontsource/sarabun/400.css";
+@import "@fontsource/sarabun/500.css";
+@import "@fontsource/sarabun/600.css";
+@import "./tokens.css";
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  /* 1rem tracks the slide: about 26px at 1920x1080, 18px at 1366x768, 16px on phones */
+  font-size: clamp(16px, min(1.35vw, 2.4vh), 30px);
+  -webkit-text-size-adjust: 100%;
+}
+
+@media (min-width: 900px) and (min-aspect-ratio: 4/3) {
+  html {
+    scroll-snap-type: y mandatory;
+  }
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: var(--step-0);
+  /* Thai stacks vowels and tone marks above and below the line, so it needs air */
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 750;
+  font-stretch: 75%;
+  line-height: 1.2;
+  text-wrap: balance;
+}
+
+h2 {
+  font-size: 2.6rem;
+}
+
+h3 {
+  font-size: var(--step-1);
+  font-stretch: 87.5%;
+  font-weight: 650;
+}
+
+p {
+  margin: 0;
+  text-wrap: pretty;
+}
+
+p + p {
+  margin-top: 0.75em;
+}
+
+button,
+input,
+select {
+  font: inherit;
+  color: inherit;
+}
+
+:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+}
+
+/* the finding a slide is about, marked the way a student marks their notes */
+.marker {
+  background: linear-gradient(
+    to bottom,
+    transparent 52%,
+    var(--marker) 52%,
+    var(--marker) 92%,
+    transparent 92%
+  );
+  padding-inline: 0.1em;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+
+/* numbers that sit next to each other or change while dragging keep their width */
+.num {
+  font-family: var(--font-display);
+  font-variant-numeric: tabular-nums;
+  font-stretch: 87.5%;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 1ms !important;
+    scroll-behavior: auto !important;
+  }
+}

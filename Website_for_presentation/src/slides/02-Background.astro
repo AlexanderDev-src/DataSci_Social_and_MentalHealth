@@ -1,0 +1,15 @@
+---
+import Slide from "@features/deck/ui/Slide.astro";
+import { UsageHistogram } from "@features/usage-histogram";
+---
+
+<Slide id="background" title="นักศึกษาใช้โซเชียลมีเดีย วันละเกือบ 8 ชั่วโมง">
+  <p>คำถามที่ได้ยินบ่อยคือ ใช้มากขนาดนี้แล้วสุขภาพจิตแย่ลงหรือเปล่า</p>
+  <p>
+    งานระดับโลกพบว่าความสัมพันธ์มีขนาดเล็ก และขึ้นกับว่าดูอะไร ไม่ใช่แค่ดูนานแค่ไหน
+    โครงงานนี้จึงวัดทั้งเวลาที่ใช้และประเภทเนื้อหา แล้วแยกสุขภาพจิตเป็น 3 มิติด้วยแบบวัด DASS-21
+  </p>
+  <p class="note">ชั่วโมงใช้งานไม่ได้ให้เดา ผู้ตอบเปิดดูค่าจริงจาก Screen Time หรือ Digital Wellbeing</p>
+
+  <UsageHistogram slot="stage" />
+</Slide>

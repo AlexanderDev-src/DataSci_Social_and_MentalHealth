@@ -1,0 +1,76 @@
+---
+import Slide from "@features/deck/ui/Slide.astro";
+
+/** The seven research questions of chapter 3, each linked to the slide that answers it. */
+const QUESTIONS = [
+  { text: "เวลาที่ใช้ต่อวัน สัมพันธ์กับคะแนนทั้งสามมิติอย่างไร และแรงเพียงใด", slide: "q1" },
+  { text: "โซเชียลมีเดียสัมพันธ์กับมิติใดของ DASS-21 มากที่สุด", slide: "q1" },
+  { text: "การติดตามข่าวเชิงลบสัมพันธ์กับความวิตกกังวลมากกว่ามิติอื่นหรือไม่", slide: "q3" },
+  { text: "ผู้ที่เสพเนื้อหาต่างประเภทกัน มีคะแนนต่างกันหรือไม่", slide: "q4" },
+  { text: "เวลาที่ใช้สัมพันธ์กับชั่วโมงและคุณภาพการนอนอย่างไร", slide: "q5" },
+  { text: "เมื่อคุมการนอน การออกกำลังกาย ความกดดัน เกรด และการเงินแล้ว เวลาที่ใช้ยังอธิบายคะแนนได้อยู่หรือไม่", slide: "q6" },
+  { text: "ในกลุ่มที่เกรดและการเงินใกล้กัน คนที่ใช้มากกว่าเครียดต่างจากคนที่ใช้น้อยกว่าหรือไม่", slide: "q7" },
+];
+---
+
+<Slide id="questions" title="คำถามวิจัย 7 ข้อ" layout="stacked">
+  <p>กดที่คำถามเพื่อไปยังสไลด์ที่ตอบข้อนั้น</p>
+
+  <ol class="questions" slot="stage">
+    {
+      QUESTIONS.map((q) => (
+        <li>
+          <a href={`#${q.slide}`}>{q.text}</a>
+        </li>
+      ))
+    }
+  </ol>
+</Slide>
+
+<style>
+  .questions {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    counter-reset: question;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.9rem 3rem;
+  }
+
+  .questions li {
+    counter-increment: question;
+    display: grid;
+    grid-template-columns: 2.2rem minmax(0, 1fr);
+    align-items: baseline;
+    border-top: 1px solid var(--rule);
+    padding-top: 0.6rem;
+  }
+
+  .questions li::before {
+    content: counter(question);
+    font-family: var(--font-display);
+    font-stretch: 75%;
+    font-weight: 800;
+    font-size: var(--step-2);
+    line-height: 1;
+  }
+
+  .questions a {
+    color: inherit;
+    text-decoration: none;
+    max-width: 30em;
+  }
+
+  .questions a:hover {
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 0.2em;
+  }
+
+  @media (max-width: 899px) {
+    .questions {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+</style>

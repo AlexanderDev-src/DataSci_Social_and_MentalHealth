@@ -1,0 +1,63 @@
+.canvas {
+  display: grid;
+  grid-template-columns: minmax(0, 2.3fr) minmax(0, 1fr);
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.frame {
+  fill: none;
+  stroke: var(--rule);
+}
+
+.zero {
+  stroke: var(--rule);
+}
+
+.point {
+  fill-opacity: 0.75;
+  stroke: var(--paper);
+  stroke-width: 1.5;
+}
+
+.fit {
+  stroke: var(--ink);
+  stroke-width: 3;
+}
+
+.axisTitle {
+  fill: var(--ink);
+  font-weight: 600;
+}
+
+.simulated {
+  fill: var(--ink-soft);
+  font-style: italic;
+}
+
+.grid svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.cell {
+  transition: fill 250ms var(--ease-out);
+}
+
+.gridNote {
+  margin-top: 0.6rem;
+  font-size: var(--step--1);
+  color: var(--ink-soft);
+  line-height: 1.45;
+}
+
+@media (max-width: 899px) {
+  .canvas {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .grid {
+    max-width: 14rem;
+  }
+}

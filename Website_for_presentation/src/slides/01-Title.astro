@@ -1,0 +1,124 @@
+---
+/** Opening slide: the question in the students' own words, then the formal title. */
+---
+
+<section id="title" class="title" data-slide aria-labelledby="title-heading">
+  <p class="course">
+    โครงงานรายวิชาวิทยาการข้อมูล สาขาวิชาวิทยาการคอมพิวเตอร์ วิทยาลัยการคอมพิวเตอร์ มหาวิทยาลัยขอนแก่น
+  </p>
+
+  <h1 id="title-heading">
+    <span class="line"><span>ยิ่งไถโซเชียลนาน</span></span>
+    <span class="line"><span>ยิ่งเครียดจริงไหม</span></span>
+  </h1>
+
+  <div class="formal">
+    <p class="th">การศึกษาความสัมพันธ์ระหว่างพฤติกรรมการใช้โซเชียลมีเดียกับสุขภาวะทางจิตของนักศึกษา</p>
+    <p class="en" lang="en">
+      A Study of the Relationship between Social Media Usage Behavior and Mental Well-being among University Students
+    </p>
+    <ul class="authors">
+      <li>พัชรพล พันทวี</li>
+      <li>กันติชา ชื่นปัญญาวุฒิ</li>
+    </ul>
+    <p class="term">ภาคการศึกษาที่ 1 ปีการศึกษา 2569</p>
+  </div>
+</section>
+
+<style>
+  .title {
+    min-height: 100vh;
+    min-height: 100dvh;
+    scroll-snap-align: start;
+    padding: clamp(2rem, 7vh, 4.5rem) var(--gutter) clamp(3.5rem, 10vh, 5.5rem);
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    row-gap: 1.5rem;
+  }
+
+  .course {
+    font-size: var(--step--1);
+    color: var(--ink-soft);
+    max-width: 40em;
+  }
+
+  h1 {
+    align-self: center;
+    font-size: clamp(3rem, min(9vw, 14vh), 10rem);
+    font-weight: 850;
+    font-stretch: 62.5%;
+    line-height: 1.12;
+    letter-spacing: -0.01em;
+  }
+
+  /* each line rises out of its own mask: the one entrance on the whole deck */
+  .line {
+    display: block;
+    overflow: hidden;
+    padding-block: 0.06em;
+  }
+
+  .line > span {
+    display: block;
+    animation: rise 900ms var(--ease-out) both;
+  }
+
+  .line:nth-child(2) > span {
+    animation-delay: 140ms;
+  }
+
+  .formal {
+    display: grid;
+    gap: 0.35rem;
+    max-width: 44em;
+    border-top: 3px solid var(--ink);
+    padding-top: 1.25rem;
+    animation: settle 700ms var(--ease-out) 500ms both;
+  }
+
+  .th {
+    font-family: var(--font-display);
+    font-stretch: 87.5%;
+    font-weight: 650;
+    font-size: var(--step-1);
+    line-height: 1.35;
+  }
+
+  .en {
+    color: var(--ink-soft);
+    font-style: italic;
+  }
+
+  .authors {
+    list-style: none;
+    margin: 0.75rem 0 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0 2rem;
+    font-weight: 600;
+  }
+
+  .term {
+    color: var(--ink-soft);
+    margin: 0;
+  }
+
+  @keyframes rise {
+    from {
+      transform: translateY(105%);
+    }
+    to {
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes settle {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+</style>

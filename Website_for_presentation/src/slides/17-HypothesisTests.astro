@@ -1,0 +1,85 @@
+---
+import Slide from "@features/deck/ui/Slide.astro";
+import { HYPOTHESIS_TESTS } from "@data/hypothesisTests";
+import { formatP } from "@shared/format";
+
+const ALPHA = 0.05;
+---
+
+<Slide id="hypothesis" title="การทดสอบสมมติฐาน 4 แบบ ตามที่รายวิชากำหนด" layout="stacked">
+  <p>ทุกการทดสอบใช้ α = 0.05 ผลที่ปฏิเสธ H₀ ได้มีสองข้อ ทั้งสองข้อไม่เกี่ยวกับโซเชียลมีเดีย</p>
+
+  <div class="tests" slot="stage">
+    {
+      HYPOTHESIS_TESTS.map((t) => {
+        const rejected = t.p < ALPHA;
+        return (
+          <article class:list={["test", { rejected }]}>
+            <h3>{t.hypothesis}</h3>
+            <p class="method">{t.test}</p>
+            <p class="result num">
+              {t.result}, {formatP(t.p)}
+            </p>
+            <p class="verdict">{rejected ? "ปฏิเสธ H₀" : "ไม่ปฏิเสธ H₀"}</p>
+          </article>
+        );
+      })
+    }
+  </div>
+</Slide>
+
+<style>
+  .tests {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 2rem;
+  }
+
+  .test {
+    border-top: 3px solid var(--rule-strong);
+    padding-top: 1rem;
+    display: grid;
+    grid-template-rows: auto auto auto 1fr;
+    gap: 0.4rem;
+  }
+
+  .test.rejected {
+    border-top-color: var(--ink);
+  }
+
+  .method {
+    color: var(--ink-soft);
+    margin: 0;
+  }
+
+  .result {
+    margin: 0;
+    font-weight: 600;
+  }
+
+  .verdict {
+    align-self: end;
+    margin: 0.75rem 0 0;
+    font-family: var(--font-display);
+    font-stretch: 75%;
+    font-weight: 800;
+    font-size: var(--step-2);
+    line-height: 1.2;
+  }
+
+  .test:not(.rejected) .verdict {
+    color: var(--ink-soft);
+  }
+
+  @media (max-width: 1100px) {
+    .tests {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 599px) {
+    .tests {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+</style>

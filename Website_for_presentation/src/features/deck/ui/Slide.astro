@@ -1,0 +1,136 @@
+---
+/**
+ * One slide. The default slot is the spoken half (heading and a few lines of text);
+ * the "stage" slot holds the chart the presenter drives.
+ *
+ * layout "split": text left, stage right. "stacked": text on top, stage full width.
+ */
+interface Props {
+  id: string;
+  title: string;
+  /** Which research question this slide answers, when it answers one. */
+  question?: string;
+  layout?: "split" | "stacked";
+}
+
+const { id, title, question, layout = "split" } = Astro.props;
+const hasStage = Astro.slots.has("stage");
+
+// The browser's Thai dictionary splits loanwords such as "โซเชียล" mid-word.
+// Headings break only at the spaces written into the title, as Thai headlines do.
+const phrases = title.split(" ");
+---
+
+<section id={id} class:list={["slide", `slide--${layout}`, { "slide--text": !hasStage }]} data-slide aria-labelledby={`${id}-title`}>
+  <div class="copy">
+    {question && <p class="question">{question}</p>}
+    <h2 id={`${id}-title`}>
+      {phrases.map((phrase, i) => <><span class="phrase">{phrase}</span>{i < phrases.length - 1 && " "}</>)}
+    </h2>
+    <div class="body"><slot /></div>
+  </div>
+  {hasStage && <div class="stage"><slot name="stage" /></div>}
+</section>
+
+<style>
+  .slide {
+    min-height: 100vh;
+    min-height: 100dvh;
+    scroll-snap-align: start;
+    padding: clamp(2rem, 7vh, 4.5rem) var(--gutter) clamp(3.5rem, 10vh, 5.5rem);
+    display: grid;
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    column-gap: clamp(2rem, 5vw, 6rem);
+    row-gap: 1.75rem;
+    align-items: center;
+    align-content: center;
+  }
+
+  .slide + :global(.slide) {
+    border-top: 1px solid var(--rule);
+  }
+
+  .slide--stacked {
+    grid-template-columns: minmax(0, 1fr);
+    align-content: start;
+  }
+
+  .slide--stacked .copy {
+    display: grid;
+    grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+    column-gap: clamp(2rem, 5vw, 6rem);
+    align-items: end;
+  }
+
+  .slide--stacked .question,
+  .slide--stacked h2 {
+    grid-column: 1;
+  }
+
+  .slide--stacked .body {
+    grid-column: 2;
+    grid-row: 1 / span 2;
+    margin-top: 0;
+  }
+
+  .slide--text {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .question {
+    font-family: var(--font-display);
+    font-stretch: 87.5%;
+    font-weight: 600;
+    color: var(--ink-soft);
+    margin-bottom: 0.5rem;
+  }
+
+  h2 {
+    max-width: 15em;
+  }
+
+  .phrase {
+    white-space: nowrap;
+  }
+
+  .slide--stacked h2 {
+    max-width: none;
+  }
+
+  .body {
+    margin-top: 1.25rem;
+    max-width: 30em;
+  }
+
+  .body :global(ul) {
+    margin: 0;
+    padding-left: 1.1em;
+  }
+
+  .body :global(li + li) {
+    margin-top: 0.4em;
+  }
+
+  .body :global(.note) {
+    margin-top: 1.25em;
+    font-size: var(--step--1);
+    color: var(--ink-soft);
+  }
+
+  .stage {
+    min-width: 0;
+  }
+
+  @media (max-width: 899px) {
+    .slide,
+    .slide--stacked .copy {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .slide--stacked .body {
+      grid-column: 1;
+      grid-row: auto;
+      margin-top: 1.25rem;
+    }
+  }
+</style>

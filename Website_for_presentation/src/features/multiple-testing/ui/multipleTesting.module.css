@@ -1,0 +1,18 @@
+.pass {
+  fill: var(--marker);
+  fill-opacity: 0.35;
+}
+
+.dimension {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.rowLine {
+  stroke: var(--rule);
+}
+
+.threshold {
+  stroke: var(--ink);
+  stroke-width: 2.5;
+}

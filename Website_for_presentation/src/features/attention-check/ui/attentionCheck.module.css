@@ -1,0 +1,41 @@
+.significantZone {
+  fill: var(--marker);
+  fill-opacity: 0.35;
+}
+
+.zoneLabel {
+  fill: var(--ink-soft);
+  font-weight: 600;
+}
+
+.alpha {
+  stroke: var(--ink);
+  stroke-width: 2;
+}
+
+.question {
+  fill: var(--ink);
+  font-size: 18px;
+  font-weight: 650;
+}
+
+.value {
+  fill: var(--ink-soft);
+}
+
+.track {
+  stroke: var(--rule-strong);
+  stroke-width: 1.5;
+}
+
+.dotFilled {
+  fill: var(--ink);
+  stroke: var(--ink);
+  stroke-width: 3;
+}
+
+.dotHollow {
+  fill: var(--paper);
+  stroke: var(--ink);
+  stroke-width: 3;
+}

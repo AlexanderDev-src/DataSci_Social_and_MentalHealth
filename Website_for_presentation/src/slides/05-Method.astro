@@ -1,0 +1,72 @@
+---
+import Slide from "@features/deck/ui/Slide.astro";
+import { REGRESSION_N } from "@data/regression";
+import { SURVEY } from "@data/survey";
+
+/** From every answer down to the rows the regression could use: a real sequence of filters. */
+const FUNNEL = [
+  { count: SURVEY.responses, label: "ตอบแบบสอบถาม" },
+  { count: SURVEY.analysed, label: `ผ่านข้อดักความใส่ใจ (ตัดออก ${SURVEY.failedAttentionCheck} คน)` },
+  { count: REGRESSION_N, label: "ตอบครบทุกตัวแปร ใช้ในสมการถดถอย" },
+];
+---
+
+<Slide id="method" title="เก็บเองจากนักศึกษา มข. 121 คน ใช้วิเคราะห์ 107 คน">
+  <ul>
+    <li>Google Forms 36 ข้อ ตอบราว 8 ถึง 9 นาที เก็บ {SURVEY.collected}</li>
+    <li>DASS-21 ฉบับภาษาไทย วัดซึมเศร้า วิตกกังวล และเครียด มิติละ 7 ข้อ</li>
+    <li>ถามการนอน การออกกำลังกาย ความกดดันจากการเรียน เกรด และความเพียงพอทางการเงิน เพื่อใช้คุมในสมการ</li>
+    <li>มีข้อดักความใส่ใจ 1 ข้อ ใครตอบผิดถูกตัดออกตามที่เค้าโครงกำหนด</li>
+  </ul>
+  <p class="note">ผู้ตอบหญิง {SURVEY.female} คน ชาย {SURVEY.male} คน ไม่เก็บชื่อ รหัสนักศึกษา หรืออีเมล</p>
+
+  <ol class="funnel" slot="stage">
+    {
+      FUNNEL.map((step) => (
+        <li style={`--share: ${step.count / SURVEY.responses}`}>
+          <span class="count num">{step.count}</span>
+          <span class="bar" aria-hidden="true" />
+          <span class="label">{step.label}</span>
+        </li>
+      ))
+    }
+  </ol>
+</Slide>
+
+<style>
+  .funnel {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: grid;
+    gap: 1.75rem;
+  }
+
+  .funnel li {
+    display: grid;
+    grid-template-columns: max-content minmax(0, 1fr);
+    column-gap: 1.25rem;
+    align-items: center;
+  }
+
+  .count {
+    grid-row: span 2;
+    font-size: var(--step-4);
+    font-weight: 800;
+    font-stretch: 62.5%;
+    line-height: 1;
+    text-align: right;
+  }
+
+  .bar {
+    display: block;
+    height: 1.4rem;
+    width: calc(var(--share) * 100%);
+    background: var(--ink);
+  }
+
+  .label {
+    margin-top: 0.35rem;
+    color: var(--ink-soft);
+  }
+</style>

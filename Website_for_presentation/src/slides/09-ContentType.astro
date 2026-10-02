@@ -1,0 +1,17 @@
+---
+import Slide from "@features/deck/ui/Slide.astro";
+import { ContentGroups } from "@features/content-groups";
+---
+
+<Slide id="q4" question="คำถามวิจัยข้อ 4" title="ดูเนื้อหาประเภทไหน คะแนนก็ไม่ต่างกัน">
+  <p>
+    กลุ่มที่ดูข่าวมากที่สุดมีคะแนนวิตกกังวลเฉลี่ยสูงสุด แต่ต่างจากกลุ่มอื่นไม่ถึง 3 คะแนน
+    และ Kruskal-Wallis ไม่พบความต่างในมิติใดเลย
+  </p>
+  <p>
+    <span class="marker">กลุ่มข่าวมีเพียง 8 คน</span>
+    ความต่างเล็ก ๆ แบบนี้จึงตรวจไม่เจอ ลองสลับให้ความกว้างของแท่งเป็นไปตามจำนวนคน
+  </p>
+
+  <ContentGroups slot="stage" client:visible />
+</Slide>

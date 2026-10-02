@@ -1,0 +1,22 @@
+.guide {
+  stroke: var(--ink-faint);
+  stroke-width: 1;
+  stroke-dasharray: 3 4;
+}
+
+.interval {
+  stroke: var(--ink);
+  stroke-width: 2.5;
+}
+
+.verdict {
+  fill: var(--ink);
+  font-size: 20px;
+  font-weight: 750;
+}
+
+.pointLabel {
+  fill: var(--ink);
+  font-weight: 650;
+  font-size: 17px;
+}

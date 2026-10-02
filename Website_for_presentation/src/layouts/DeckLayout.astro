@@ -1,0 +1,37 @@
+---
+import "../styles/global.css";
+import { DeckController } from "@features/deck";
+
+interface Props {
+  title: string;
+  description: string;
+}
+
+const { title, description } = Astro.props;
+---
+
+<!doctype html>
+<html lang="th">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <title>{title}</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <script is:inline>
+      // apply the remembered theme before first paint so the slides never flash
+      try {
+        const theme = localStorage.getItem("deck-theme");
+        if (theme === "light" || theme === "dark") document.documentElement.dataset.theme = theme;
+      } catch {
+        // storage blocked: fall back to the system setting
+      }
+    </script>
+  </head>
+  <body>
+    <main>
+      <slot />
+    </main>
+    <DeckController client:load />
+  </body>
+</html>

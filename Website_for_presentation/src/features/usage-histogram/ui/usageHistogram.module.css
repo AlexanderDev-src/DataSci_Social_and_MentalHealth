@@ -1,0 +1,24 @@
+.bar {
+  fill: var(--ink);
+}
+
+.hatch {
+  stroke: var(--rule-strong);
+  stroke-width: 1.5;
+}
+
+.emptyNote {
+  fill: var(--ink-soft);
+  font-weight: 600;
+}
+
+.mean {
+  stroke: var(--ink);
+  stroke-width: 1.5;
+  stroke-dasharray: 4 4;
+}
+
+.meanLabel {
+  fill: var(--ink);
+  font-weight: 600;
+}

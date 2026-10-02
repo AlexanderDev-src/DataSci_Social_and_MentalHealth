@@ -1,0 +1,14 @@
+---
+import Slide from "@features/deck/ui/Slide.astro";
+import { ScoreDrivers } from "@features/score-drivers";
+---
+
+<Slide id="what-if" title="ลองเลื่อนดู ว่าอะไรขยับคะแนน" layout="stacked">
+  <p>
+    สมการถดถอยทั้งสามใช้ตัวแปรต้นชุดเดียวกัน 8 ตัว เลื่อนตัวไหน สมการจะทำนายคะแนนเฉลี่ยของนักศึกษาที่มีค่านั้น
+    โดยตัวแปรอื่นอยู่ที่เดิม
+    <span class="marker">ลองเลื่อนชั่วโมงใช้งานจนสุด แล้วเทียบกับความเพียงพอทางการเงิน</span>
+  </p>
+
+  <ScoreDrivers slot="stage" client:visible />
+</Slide>

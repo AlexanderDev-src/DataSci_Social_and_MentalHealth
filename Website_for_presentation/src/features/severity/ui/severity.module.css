@@ -1,0 +1,17 @@
+.label {
+  fill: var(--ink);
+  font-weight: 650;
+  font-size: 18px;
+}
+
+.segment {
+  transition:
+    fill 300ms var(--ease-out),
+    fill-opacity 300ms var(--ease-out);
+}
+
+.total {
+  font-size: 26px;
+  font-weight: 750;
+  font-stretch: 75%;
+}

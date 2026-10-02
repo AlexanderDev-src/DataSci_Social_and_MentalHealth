@@ -1,0 +1,17 @@
+---
+import Slide from "@features/deck/ui/Slide.astro";
+import { MultipleTesting } from "@features/multiple-testing";
+---
+
+<Slide id="bonferroni" title="ทดสอบหลายครั้ง ต้องเข้มเกณฑ์ขึ้น">
+  <p>
+    ที่ระดับ 0.05 ถ้าทดสอบ 20 ครั้ง จะเจอผลที่ดูมีนัยสำคัญแบบบังเอิญราว 1 ครั้งโดยธรรมชาติ
+    Bonferroni แก้ด้วยการหาร 0.05 ด้วยจำนวนการทดสอบ
+  </p>
+  <p>
+    ลองเลื่อนไปที่ 24 ครั้ง (ตัวแปรต้น 8 ตัว คูณ 3 มิติ)
+    <span class="marker">คู่ที่ยังผ่านเหลือ 2 คู่ และไม่มีคู่ไหนเป็นตัวแปรโซเชียลมีเดีย</span>
+  </p>
+
+  <MultipleTesting slot="stage" client:visible />
+</Slide>

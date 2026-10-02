@@ -1,0 +1,15 @@
+---
+import Slide from "@features/deck/ui/Slide.astro";
+import { CorrelationExplorer } from "@features/correlation-explorer";
+---
+
+<Slide id="q1" question="คำถามวิจัยข้อ 1 และ 2" title="ชั่วโมงที่ใช้ แทบไม่บอกอะไร เกี่ยวกับคะแนน">
+  <p>
+    ค่า r ของชั่วโมงใช้งานกับทั้งสามมิติอยู่ระหว่าง −0.15 ถึง −0.09 ไม่มีนัยสำคัญในมิติใด
+    <span class="marker">และอธิบายความต่างของคะแนนได้ไม่ถึง 2.2%</span>
+  </p>
+  <p>ทั้งสามมิติมีขนาดใกล้กัน จึงยังตอบไม่ได้ว่าโซเชียลมีเดียสัมพันธ์กับมิติใดมากกว่ากัน</p>
+  <p class="note">จุดในกราฟเป็นจุดจำลอง 107 จุดที่มีค่า r เท่ากับที่พบ ใช้ดูว่า r ขนาดนี้หน้าตาเป็นอย่างไร</p>
+
+  <CorrelationExplorer slot="stage" client:visible />
+</Slide>

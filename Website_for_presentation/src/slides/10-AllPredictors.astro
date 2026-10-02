@@ -1,0 +1,18 @@
+---
+import Slide from "@features/deck/ui/Slide.astro";
+import { CorrelationRanking } from "@features/correlation-ranking";
+---
+
+<Slide id="q5" question="คำถามวิจัยข้อ 5" title="ตัวแปรที่สัมพันธ์จริง คือการนอน เงิน และความกดดัน">
+  <p>
+    ชั่วโมงใช้งานไม่สัมพันธ์กับชั่วโมงการนอน (r = 0.049) หรือคุณภาพการนอน (r = 0.114)
+    คนที่ใช้มากจึงไม่ได้นอนน้อยหรือนอนแย่กว่า
+  </p>
+  <p>
+    <span class="marker">แต่คุณภาพการนอนเองสัมพันธ์กับซึมเศร้าและความเครียด</span>
+    เช่นเดียวกับการเงินและความกดดันจากการเรียน
+  </p>
+  <p class="note">แถบเหลืองคือตัวแปรโซเชียลมีเดีย สลับมิติเพื่อดูลำดับที่เปลี่ยนไป</p>
+
+  <CorrelationRanking slot="stage" client:visible />
+</Slide>

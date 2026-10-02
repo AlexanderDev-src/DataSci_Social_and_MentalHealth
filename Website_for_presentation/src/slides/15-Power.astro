@@ -1,0 +1,17 @@
+---
+import Slide from "@features/deck/ui/Slide.astro";
+import { PowerAnalysis } from "@features/power-analysis";
+---
+
+<Slide id="power" title="ไม่พบ ไม่ได้แปลว่าไม่มี">
+  <p>
+    งานที่ใช้กลุ่มตัวอย่างกว่า 3 แสนคนพบว่าเทคโนโลยีดิจิทัลอธิบายสุขภาวะได้ราว 0.4% หรือ r ประมาณ 0.06
+    ถ้าความจริงเล็กขนาดนั้น 107 คนมีโอกาสเห็นเพียงราว 10%
+  </p>
+  <p>
+    <span class="marker">ผลของเราจึงบอกว่า ถ้ามีความสัมพันธ์ ก็เล็กเกินกว่ากลุ่มตัวอย่างขนาดนี้จะเห็น</span>
+  </p>
+  <p class="note">คำนวณจากการแปลง Fisher z ที่ α = 0.05 สองทาง</p>
+
+  <PowerAnalysis slot="stage" client:visible />
+</Slide>
