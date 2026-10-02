@@ -16,6 +16,11 @@
 % ตัดบรรทัดภาษาไทย -- ถ้าไม่ใส่ ย่อหน้าภาษาไทยจะทะลุขอบกระดาษ
 \XeTeXlinebreaklocale "th"
 \XeTeXlinebreakskip = 0pt plus 1pt
+% ชื่อตัวแปรใน \texttt และการอ้างอิงยาว ๆ ตัดบรรทัดไม่ได้ ยอมให้ยืดช่องว่างเพิ่มแทนการล้นขอบ
+\setlength{\emergencystretch}{3em}
+% ไม่ตัดบรรทัดกลางสูตรสั้น ๆ เช่น $n = 103$ หรือ $p > 0.15$
+% ตั้งตอนเริ่มเอกสาร เพราะแพ็กเกจ url อ่านค่านี้ตอนโหลดเพื่อใช้เป็นจุดตัดบรรทัดของ URL
+\AtBeginDocument{\relpenalty=10000 \binoppenalty=10000}
 
 % ---------------------------------------------------------------
 % Page layout
@@ -46,6 +51,14 @@
 \usepackage{float}
 \usepackage{enumitem}
 \usepackage{url}
+
+% รายการเลขหัวข้อแบบ 1.2.1 ใต้ \section และ 1.2.1.1 ใต้ \subsection (เหมือนเค้าโครง)
+\newlist{subitems}{enumerate}{1}
+\setlist[subitems]{label=\thesection.\arabic*,labelindent=1.27cm,leftmargin=*,
+                   itemsep=0.2em,topsep=0.2em,parsep=0pt}
+\newlist{subsubitems}{enumerate}{1}
+\setlist[subsubitems]{label=\thesubsection.\arabic*,labelindent=1.9cm,leftmargin=*,
+                      itemsep=0.2em,topsep=0.2em,parsep=0pt}
 
 % ---------------------------------------------------------------
 % หัวบท: "บทที่ 1" อยู่กลางหน้า บรรทัดถัดมาเป็นชื่อบท ตามรูปแบบรายงานไทย
@@ -95,10 +108,14 @@
 \input{chapter/03-methodology.tex}
 \input{chapter/04-results.tex}
 \input{chapter/05-conclusion.tex}
-
+%
 % ---- เอกสารอ้างอิงและภาคผนวก ----
 % ใช้ไฟล์ .bib ร่วมกับเค้าโครง จะได้ไม่ต้องแก้สองที่
+% ไม่ให้รายการอ้างอิงรายการเดียวขาดข้ามหน้า
+\begingroup
+\interlinepenalty=10000
 \bibliography{../references}
+\endgroup
 \input{chapter/06-appendix.tex}
 
 \end{document}
