@@ -51,11 +51,11 @@ URL จะต่อท้ายด้วย `#ชื่อสไลด์` เ�
 
 ข้อมูลรายคนอยู่ใน `codingpy/data/` ซึ่งไม่ถูก commit เว็บจึงไม่ได้อ่านข้อมูลรายคนเลย
 
-- `src/data/generated/aggregates.json` เขียนโดย `codingpy/export_presentation.py`
+- `src/data/generated/aggregates.json` เขียนโดยหัวข้อ 12 ของ `codingpy/social_media_mental_health.ipynb`
   มีเฉพาะค่าสถิติรวม ได้แก่ สหสัมพันธ์ สัมประสิทธิ์และเมทริกซ์ความแปรปรวนร่วมของสมการถดถอย และฮิสโทแกรมชั่วโมงใช้งาน
-  ถ้าข้อมูลเปลี่ยน ให้รันสคริปต์ใหม่จากโฟลเดอร์ `codingpy/`
+  ถ้าข้อมูลเปลี่ยน ให้รัน notebook ใหม่ทั้งไฟล์จากรากของ repo
   ```bash
-  cd ../codingpy && uv run python export_presentation.py
+  cd .. && uv run jupyter nbconvert --to notebook --execute --inplace codingpy/social_media_mental_health.ipynb
   ```
 - ตัวเลขที่เหลือ (ระดับความรุนแรง ANOVA ผลเมื่อรวม 121 คน การทดสอบสมมติฐาน) คัดมาจากบทที่ 4 ของรายงาน
   อยู่ในไฟล์ `src/data/*.ts` แต่ละไฟล์ระบุเลขตารางที่มา

@@ -67,33 +67,32 @@
 | `main.tex`, `chapter/` | ต้นฉบับ LaTeX ของเค้าโครง |
 | `report/` | ต้นฉบับ LaTeX ของรายงาน (`report/chapter/` มีปก บทคัดย่อ และบทที่ 1 ถึง 5) |
 | `references.bib` | รายการอ้างอิง ใช้ร่วมกันทั้งเค้าโครงและรายงาน |
-| `figures/` | รูปทั้งหมดที่สคริปต์ใน `codingpy/` สร้างขึ้น |
+| `figures/` | รูปทั้งหมดที่ notebook ใน `codingpy/` สร้างขึ้น |
 | `Info.md` | ร่างเนื้อหาเค้าโครงก่อนแปลงเป็น LaTeX |
-| `codingpy/` | โค้ด Python ทั้งหมด (จัดการแพ็กเกจด้วย uv) |
+| `codingpy/` | โค้ด Python ทั้งหมด อยู่ใน notebook ไฟล์เดียว (จัดการแพ็กเกจด้วย uv) |
 | `codingpy/data/` | ข้อมูลดิบและข้อมูลที่ทำความสะอาดแล้ว **ไม่ถูก commit** |
 | `Website_for_presentation/` | เว็บสไลด์นำเสนอที่ปรับค่ากราฟได้ระหว่างนำเสนอ (Astro + React) วิธีรันอยู่ใน README ของโฟลเดอร์ |
 
-### ไฟล์โค้ดใน `codingpy/`
+### โค้ดใน `codingpy/`
 
-| ไฟล์ | หน้าที่ |
+โค้ดทั้งหมดอยู่ใน `codingpy/social_media_mental_health.ipynb` ไฟล์เดียว เรียงตามขั้นตอนตั้งแต่นำเข้าข้อมูลจนถึงผลลัพธ์
+มีคำอธิบายกำกับทุกขั้น และรันจากเซลล์แรกถึงเซลล์สุดท้ายได้โดยไม่ต้องมีไฟล์ `.py` ประกอบ
+
+| หัวข้อใน notebook | หน้าที่ |
 |---|---|
-| `config.py` | ค่าคงที่ร่วม (seed = 42, พาธข้อมูล) ฟังก์ชันโหลดข้อมูล และ `passed_attention()` ที่ตัดผู้ไม่ผ่านข้อดัก |
-| `labels.py` | แปลงคำตอบภาษาไทยเป็นป้ายภาษาอังกฤษ และเป็นรหัสตัวเลขสำหรับ SPSS |
-| `clean_data.py` | ทำความสะอาดข้อมูลดิบ แปลงข้อความเป็นตัวเลข คิดคะแนน DASS-21 และเขียนไฟล์สำหรับ SPSS |
-| `rich_console.py` | พิมพ์ DataFrame เป็นตารางอ่านง่ายในเทอร์มินัล |
-| `reliability.py` | ค่าแอลฟาของครอนบาคแต่ละมิติ พร้อมช่วงความเชื่อมั่นแบบ bootstrap |
-| `qr2.py` | คำถามข้อ 1 ถึง 3: สหสัมพันธ์ของชั่วโมงใช้งานและการติดตามข่าวกับสามมิติ พร้อม partial r |
-| `q1_usage_dass.py` | คำถามข้อ 1: scatter plot ชั่วโมงใช้งานกับสามมิติ |
-| `q3_news_anxiety.py` | คำถามข้อ 3: การติดตามข่าวกับสามมิติ |
-| `q4_content_type.py` | คำถามข้อ 4: เทียบคะแนนระหว่าง 4 กลุ่มเนื้อหา (Kruskal-Wallis) |
-| `q5_interaction_dass.py` | คำถามข้อ 5: ชั่วโมงใช้งานกับการนอน และพฤติกรรมในชีวิตประจำวันกับสามมิติ |
-| `q6_regression.ipynb` | คำถามข้อ 6 และ 7: การถดถอยแบบลำดับขั้น VIF การตรวจข้อตกลงเบื้องต้น และ partial regression plot |
-| `q6_gpa_finance.py` | เกรดเฉลี่ยและสภาพการเงินกับสามมิติ |
-| `qr7.py` | สภาพการเงิน 3 กลุ่มกับสามมิติ (ANOVA) |
-| `hypothesis_tests.py` | การทดสอบสมมติฐาน 4 แบบตามที่รายวิชากำหนด |
-| `analysis.py` | กราฟ 3 มิติ โซเชียลมีเดีย × การนอน → คะแนน DASS รวม (ใช้ผู้ตอบทั้ง 121 คน) |
-| `animation.py` | แอนิเมชัน what-if เพิ่มชั่วโมงการใช้โซเชียลมีเดียทีละชั่วโมง (ใช้ผู้ตอบทั้ง 121 คน) |
-| `export_presentation.py` | ส่งออกค่าสถิติรวม (ไม่มีข้อมูลรายคน) ให้เว็บใน `Website_for_presentation/` |
+| 1 ตั้งค่า | ไลบรารี พาธข้อมูล ค่าคงที่ร่วม (seed = 42) และฟอนต์ภาษาไทยของกราฟ |
+| 2 นำเข้าข้อมูล | อ่านไฟล์คำตอบแบบสอบถาม `data/data.csv` |
+| 3 เตรียมข้อมูล | แปลงคำตอบภาษาไทยเป็นป้ายภาษาอังกฤษและรหัสตัวเลขสำหรับ SPSS แปลงข้อความเป็นตัวเลข คิดคะแนน DASS-21 และตัดผู้ไม่ผ่านข้อดัก |
+| 4 ความเชื่อมั่นของแบบวัด | ค่าแอลฟาของครอนบาคแต่ละมิติ พร้อมช่วงความเชื่อมั่นแบบ bootstrap |
+| 5 คำถามข้อ 1 ถึง 3 | scatter plot และสหสัมพันธ์ของชั่วโมงใช้งานและการติดตามข่าวกับสามมิติ พร้อม partial r |
+| 6 คำถามข้อ 4 | เทียบคะแนนระหว่าง 4 กลุ่มเนื้อหา (Kruskal-Wallis) |
+| 7 คำถามข้อ 5 | ชั่วโมงใช้งานกับการนอน และพฤติกรรมในชีวิตประจำวันกับสามมิติ |
+| 8 คำถามข้อ 6 และ 7 | การถดถอยแบบลำดับขั้น VIF การตรวจข้อตกลงเบื้องต้น และ partial regression plot |
+| 9 เกรดเฉลี่ยและสภาพการเงิน | เกรดเฉลี่ยกับสามมิติ และสภาพการเงิน 3 กลุ่มกับสามมิติ (ANOVA) |
+| 10 การทดสอบสมมติฐาน | การทดสอบสมมติฐาน 4 แบบตามที่รายวิชากำหนด |
+| 11 กราฟ 3 มิติและ what-if | โซเชียลมีเดีย × การนอน → คะแนน DASS รวม และแอนิเมชันเพิ่มชั่วโมงใช้งานทีละชั่วโมง (ใช้ผู้ตอบทั้ง 121 คน) |
+| 12 ส่งออก | ค่าสถิติรวม (ไม่มีข้อมูลรายคน) ให้เว็บใน `Website_for_presentation/` |
+| 13 สรุปผล | ผลของคำถามทั้ง 7 ข้อ ข้อค้นพบหลัก และข้อจำกัด |
 
 ### วิธีคอมไพล์เอกสาร
 
@@ -107,25 +106,24 @@ cd report && latexmk -xelatex main.tex    # รายงาน -> report/main.pd
 ### วิธีรันโค้ดวิเคราะห์
 
 ใช้ [uv](https://docs.astral.sh/uv/) จัดการแพ็กเกจ ไม่ต้องสร้าง virtual environment เอง
-สคริปต์อ้างพาธแบบสัมพัทธ์ (อ่าน `data/` เขียน `../figures/`) จึง**ต้องรันจากโฟลเดอร์ `codingpy/`**
+ไลบรารีที่ใช้คือ numpy, pandas, scipy, statsmodels และ matplotlib
+วางไฟล์คำตอบแบบสอบถามไว้ที่ `codingpy/data/data.csv` (ไฟล์นี้ไม่อยู่ใน repo) แล้วรัน
 
 ```bash
 uv sync
-cd codingpy
-
-uv run python clean_data.py        # data/data.csv -> data/data_clean.csv (+ ไฟล์ SPSS)
-uv run python reliability.py       # ค่าแอลฟาของ DASS-21
-uv run python qr2.py               # คำถามข้อ 1-3
-uv run python q4_content_type.py   # คำถามข้อ 4
-uv run python q5_interaction_dass.py  # คำถามข้อ 5
-uv run python qr7.py               # สภาพการเงิน
-uv run python hypothesis_tests.py  # การทดสอบสมมติฐาน 4 แบบ
+uv run jupyter lab codingpy/social_media_mental_health.ipynb    # แล้วเลือก Run > Run All Cells
 ```
 
-คำถามข้อ 6 และ 7 อยู่ใน `q6_regression.ipynb` ให้เปิดด้วย Jupyter แล้วรันทุกเซลล์
+หรือรันทั้งไฟล์โดยไม่เปิดหน้าจอ
 
-สคริปต์ที่วาดกราฟตั้ง backend เป็น `TkAgg` เพื่อเปิดหน้าต่างดูผลทันที
-ถ้ารันบนเครื่องที่ไม่มีหน้าจอ ให้ลบบรรทัด `matplotlib.use("TkAgg")` ออก
+```bash
+uv run jupyter nbconvert --to notebook --execute --inplace codingpy/social_media_mental_health.ipynb
+```
+
+Notebook อ่าน `data/` และเขียนรูปลง `../figures/` เปิดจากโฟลเดอร์ `codingpy/` หรือจากรากของ repo ก็ได้
+
+บน Google Colab ให้อัปโหลดไฟล์ notebook แล้วเลือก Runtime > Run all
+เซลล์นำเข้าข้อมูลจะเปิดช่องให้อัปโหลด `data.csv` และรูปจะถูกเขียนลงโฟลเดอร์ `figures/` ข้าง notebook
 
 ### ข้อมูลและความเป็นส่วนตัว
 
@@ -194,33 +192,32 @@ Chapter 4 of the report has the full results.
 | `main.tex`, `chapter/` | LaTeX source of the proposal |
 | `report/` | LaTeX source of the report (`report/chapter/` holds the cover, abstract and chapters 1 to 5) |
 | `references.bib` | Bibliography shared by the proposal and the report |
-| `figures/` | Every figure the scripts in `codingpy/` produce |
+| `figures/` | Every figure the notebook in `codingpy/` produces |
 | `Info.md` | Proposal draft before conversion to LaTeX |
-| `codingpy/` | All Python code (packages managed with uv) |
+| `codingpy/` | All Python code, in a single notebook (packages managed with uv) |
 | `codingpy/data/` | Raw and cleaned survey data, **not committed** |
 | `Website_for_presentation/` | Presentation site with charts the presenter adjusts live (Astro + React); its README explains how to run it |
 
 ### Code in `codingpy/`
 
-| File | Purpose |
+All of the code lives in one file, `codingpy/social_media_mental_health.ipynb`, ordered from data import to results.
+Every step is explained in the notebook, and it runs from the first cell to the last with no `.py` files beside it.
+
+| Notebook section | Purpose |
 |---|---|
-| `config.py` | Shared constants (seed 42, data path), the loader, and `passed_attention()` which drops attention-check failures |
-| `labels.py` | Thai answers to English labels, and labels to SPSS codes |
-| `clean_data.py` | Cleans the raw export, parses free text into numbers, scores DASS-21, writes the SPSS files |
-| `rich_console.py` | Prints wide DataFrames as readable terminal tables |
-| `reliability.py` | Cronbach's alpha per dimension with a bootstrap confidence interval |
-| `qr2.py` | Questions 1 to 3: hours of use and news-following against the three dimensions, with partial r |
-| `q1_usage_dass.py` | Question 1: scatter plots of hours of use against the three dimensions |
-| `q3_news_anxiety.py` | Question 3: news-following against the three dimensions |
-| `q4_content_type.py` | Question 4: scores across the four content groups (Kruskal-Wallis) |
-| `q5_interaction_dass.py` | Question 5: hours of use against sleep, and daily habits against the three dimensions |
-| `q6_regression.ipynb` | Questions 6 and 7: hierarchical regression, VIF, assumption checks and the partial regression plot |
-| `q6_gpa_finance.py` | GPA and financial sufficiency against the three dimensions |
-| `qr7.py` | The three money groups against the three dimensions (ANOVA) |
-| `hypothesis_tests.py` | The four hypothesis tests the course requires |
-| `analysis.py` | 3D plot: social media × sleep → DASS-21 total (all 121 respondents) |
-| `animation.py` | What-if animation: raise social media use one hour at a time (all 121 respondents) |
-| `export_presentation.py` | Writes the summary statistics (no respondent rows) that `Website_for_presentation/` draws from |
+| 1 Setup | Libraries, data paths, shared constants (seed 42) and the Thai font for the figures |
+| 2 Data import | Reads the survey export, `data/data.csv` |
+| 3 Data preparation | Thai answers to English labels and SPSS codes, free text to numbers, DASS-21 scoring, and dropping attention-check failures |
+| 4 Scale reliability | Cronbach's alpha per dimension with a bootstrap confidence interval |
+| 5 Questions 1 to 3 | Scatter plots and correlations of hours of use and news-following against the three dimensions, with partial r |
+| 6 Question 4 | Scores across the four content groups (Kruskal-Wallis) |
+| 7 Question 5 | Hours of use against sleep, and daily habits against the three dimensions |
+| 8 Questions 6 and 7 | Hierarchical regression, VIF, assumption checks and the partial regression plot |
+| 9 GPA and financial sufficiency | GPA against the three dimensions, and the three money groups against the three dimensions (ANOVA) |
+| 10 Hypothesis tests | The four hypothesis tests the course requires |
+| 11 3D plot and what-if | Social media × sleep → DASS-21 total, and the animation that raises use one hour at a time (all 121 respondents) |
+| 12 Export | Writes the summary statistics (no respondent rows) that `Website_for_presentation/` draws from |
+| 13 Conclusion | The answer to each of the seven questions, the main findings and the limitations |
 
 ### Building the documents
 
@@ -234,25 +231,24 @@ cd report && latexmk -xelatex main.tex    # report -> report/main.pdf
 ### Running the analysis code
 
 Packages are managed with [uv](https://docs.astral.sh/uv/), so no manual virtual environment is needed.
-The scripts use relative paths (they read `data/` and write `../figures/`), so **run them from `codingpy/`**.
+The libraries used are numpy, pandas, scipy, statsmodels and matplotlib.
+Put the survey export at `codingpy/data/data.csv` (it is not in the repository), then run:
 
 ```bash
 uv sync
-cd codingpy
-
-uv run python clean_data.py        # data/data.csv -> data/data_clean.csv (+ SPSS files)
-uv run python reliability.py       # DASS-21 alpha
-uv run python qr2.py               # questions 1-3
-uv run python q4_content_type.py   # question 4
-uv run python q5_interaction_dass.py  # question 5
-uv run python qr7.py               # financial sufficiency
-uv run python hypothesis_tests.py  # the four hypothesis tests
+uv run jupyter lab codingpy/social_media_mental_health.ipynb    # then Run > Run All Cells
 ```
 
-Questions 6 and 7 live in `q6_regression.ipynb`; open it in Jupyter and run every cell.
+Or execute the whole file without opening it:
 
-The plotting scripts set the `TkAgg` backend so a window opens straight away.
-On a headless machine, delete the `matplotlib.use("TkAgg")` line.
+```bash
+uv run jupyter nbconvert --to notebook --execute --inplace codingpy/social_media_mental_health.ipynb
+```
+
+The notebook reads `data/` and writes figures to `../figures/`; open it from `codingpy/` or from the repository root.
+
+On Google Colab, upload the notebook and choose Runtime > Run all.
+The data-import cell opens an upload prompt for `data.csv`, and figures go to a `figures/` folder beside the notebook.
 
 ### Data and privacy
 
