@@ -19,10 +19,10 @@
 
 ### สถานะ
 
-- เค้าโครงเสร็จแล้ว: `Proposol-Done.pdf`
+- เค้าโครงเสร็จแล้ว: `Report_Proposol-Done.pdf`
 - เก็บข้อมูลเสร็จแล้ว ได้คำตอบ 121 ชุด ใช้วิเคราะห์ 107 คนที่ผ่านข้อดักความใส่ใจ (หญิง 59 ชาย 48)
 - วิเคราะห์ครบทั้ง 7 คำถามวิจัย
-- รายงาน 5 บทเขียนเสร็จแล้ว อยู่ระหว่างตรวจทาน: `Full-report-0209Update.pdf`
+- รายงาน 5 บทเขียนเสร็จแล้ว อยู่ระหว่างตรวจทาน: `Report_Full-report-0209Update1.pdf`
 - บทความวิชาการรูปแบบ AUCC2027 (ภาษาไทย 7 หน้า ไม่ใส่ชื่อผู้แต่งตามแม่แบบ): `report_aucc/`
 
 ### ที่มาของข้อมูล
@@ -63,8 +63,8 @@
 
 | ไฟล์ / โฟลเดอร์ | คำอธิบาย |
 |---|---|
-| `Proposol-Done.pdf` | เค้าโครงฉบับสมบูรณ์ |
-| `Full-report-0209Update.pdf` | รายงานฉบับสมบูรณ์ 5 บท |
+| `Report_Proposol-Done.pdf` | เค้าโครงฉบับสมบูรณ์ |
+| `Report_Full-report-0209Update1.pdf` | รายงานฉบับสมบูรณ์ 5 บท |
 | `main.tex`, `chapter/` | ต้นฉบับ LaTeX ของเค้าโครง |
 | `report/` | ต้นฉบับ LaTeX ของรายงาน (`report/chapter/` มีปก บทคัดย่อ และบทที่ 1 ถึง 5) |
 | `report_aucc/` | บทความวิชาการรูปแบบ AUCC2027 ไม่เกิน 8 หน้า เขียนด้วย LaTeX ตามแม่แบบ Word ของการประชุม (`template/`) รูปขนาดคอลัมน์สร้างด้วย `make_figures.py` |
@@ -148,10 +148,10 @@ the full report, the analysis code and the figures.
 
 ### Status
 
-- Proposal finished: `Proposol-Done.pdf`
+- Proposal finished: `Report_Proposol-Done.pdf`
 - Data collection finished: 121 responses, 107 analysed after removing attention-check failures (59 female, 48 male)
 - All seven research questions analysed
-- Five-chapter report written and under review: `Full-report-0209Update.pdf`
+- Five-chapter report written and under review: `Report_Full-report-0209Update1.pdf`
 - AUCC2027 conference paper (Thai, 7 pages, anonymous as the template requires): `report_aucc/`
 
 ### About the data
@@ -191,8 +191,8 @@ Chapter 4 of the report has the full results.
 
 | File / folder | Description |
 |---|---|
-| `Proposol-Done.pdf` | Finished proposal |
-| `Full-report-0209Update.pdf` | Finished five-chapter report |
+| `Report_Proposol-Done.pdf` | Finished proposal |
+| `Report_Full-report-0209Update1.pdf` | Finished five-chapter report |
 | `main.tex`, `chapter/` | LaTeX source of the proposal |
 | `report/` | LaTeX source of the report (`report/chapter/` holds the cover, abstract and chapters 1 to 5) |
 | `report_aucc/` | AUCC2027 conference paper, 8 pages at most, in LaTeX following the conference Word template (`template/`); `make_figures.py` draws the column-width figures |

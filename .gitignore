@@ -11,7 +11,7 @@
 *.toc
 *.lof
 *.lot
-# compiled PDFs; the shared copies are Proposol-Done.pdf and Full-report-0209Update.pdf
+# compiled PDFs; the shared copies are the Report_*.pdf files in the root
 /main.pdf
 /report/main.pdf
 .gitignore
