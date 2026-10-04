@@ -1,0 +1,153 @@
+% !TEX program = xelatex
+% Build:  cd report_aucc && latexmk -xelatex main.tex
+%
+% บทความวิชาการรูปแบบ AUCC2027 ภาษาไทย ความยาวไม่เกิน 8 หน้า
+% ทำตามแม่แบบ Word ของการประชุม (template/template_oral_thai.docx จาก https://aucc-conf.org/submission.php)
+% ตัวเลขทุกตัวมาจากรายงานฉบับสมบูรณ์ใน ../report/ (ผู้ผ่านข้อดักความใส่ใจ 107 คน)
+% รูปสร้างด้วย make_figures.py ให้พอดีกับความกว้างคอลัมน์
+
+\documentclass[a4paper,twocolumn]{article}
+
+% ---------------------------------------------------------------
+% ส่งเพื่อพิจารณาต้องไม่ใส่ชื่อผู้แต่ง (แม่แบบระบุไว้)
+% ถ้าจะส่งอาจารย์แบบมีชื่อ เปลี่ยนเป็น \blindfalse
+% ---------------------------------------------------------------
+\newif\ifblind
+\blindtrue
+
+% ---------------------------------------------------------------
+% ตัวอักษร (XeLaTeX เท่านั้น)
+% แม่แบบใช้ TH SarabunPSK ซึ่งเครื่องนี้ไม่มี TH Sarabun New เป็นรุ่นใหม่ของแบบอักษรเดียวกัน
+% ---------------------------------------------------------------
+\usepackage{fontspec}
+\IfFontExistsTF{TH SarabunPSK}
+    {\setmainfont{TH SarabunPSK}}
+    {\setmainfont{TH Sarabun New}}
+
+\XeTeXlinebreaklocale "th"
+\XeTeXlinebreakskip = 0pt plus 1pt
+\setlength{\emergencystretch}{3em}
+
+% เนื้อหา 14 pt คำบรรยายภาพและตาราง 12 pt ตามแม่แบบ
+% ระยะบรรทัด 1.3 เท่าของขนาดอักษร เท่ากับระยะบรรทัดเดี่ยวของ TH SarabunPSK ใน Word
+% จำนวนหน้าที่ได้จึงใกล้กับการพิมพ์ด้วยแม่แบบ Word
+\makeatletter
+\renewcommand\normalsize{%
+    \@setfontsize\normalsize{14pt}{18.2pt}%
+    \abovedisplayskip 18.2pt \@plus 2pt \@minus 2pt%
+    \abovedisplayshortskip \abovedisplayskip
+    \belowdisplayskip \abovedisplayskip
+    \belowdisplayshortskip \abovedisplayskip
+    \let\@listi\@listI}
+\renewcommand\small{\@setfontsize\small{12pt}{15.6pt}}
+\makeatother
+\normalsize
+% สูตรใช้ฟอนต์ Computer Modern ซึ่งตัวใหญ่กว่า Sarabun ที่ขนาดเท่ากัน
+\DeclareMathSizes{14}{12}{9}{7}
+\DeclareMathSizes{12}{10}{7}{5}
+
+% ---------------------------------------------------------------
+% หน้ากระดาษ: A4 ขอบบน 30 มม. ล่าง 25 มม. ซ้ายขวา 20 มม.
+% 2 คอลัมน์ กว้างคอลัมน์ละ 82 มม. ห่างกัน 6 มม.
+% ---------------------------------------------------------------
+\usepackage[a4paper,top=30mm,bottom=25mm,left=20mm,right=20mm,
+            columnsep=6mm,headheight=18.2pt,headsep=13.7mm]{geometry}
+\setlength{\parindent}{13.5pt}
+\setlength{\parskip}{0pt}
+\usepackage{indentfirst}    % ย่อหน้าแรกใต้หัวข้อก็เว้นระยะเหมือนย่อหน้าอื่น
+\raggedbottom               % ไม่ยืดช่องว่างแนวตั้งให้คอลัมน์ยาวเท่ากัน แบบเดียวกับ Word
+
+% หัวกระดาษชื่อการประชุม ไม่มีเลขหน้า (ผู้จัดใส่เลขหน้าเองตอนรวมเล่ม)
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\fancyhead[C]{\bfseries The 15\textsuperscript{th} Asia Undergraduate Conference on Computing
+              (AUC\textsuperscript{2}) 2027}
+\fancypagestyle{plain}{}
+
+% ---------------------------------------------------------------
+% เนื้อหา
+% ---------------------------------------------------------------
+\usepackage{graphicx}
+\graphicspath{{figures/}}
+\usepackage{array}
+\usepackage{tabularx}
+\newcolumntype{L}{>{\raggedright\arraybackslash}X}
+\renewcommand{\arraystretch}{1.15}
+\usepackage{amsmath}
+
+% "ภาพ 1 ..." ใต้รูป และ "ตาราง 1 ..." เหนือตาราง ตัวเลขกำกับเป็นตัวหนา
+\usepackage{caption}
+\captionsetup{font=small,labelfont=bf,labelsep=space,justification=centering,skip=4pt}
+\captionsetup[figure]{name=ภาพ,position=bottom}
+\captionsetup[table]{name=ตาราง,position=top}
+
+% หัวข้อหลักตัวหนา กึ่งกลางคอลัมน์ มีจุดหลังเลข เว้นหนึ่งบรรทัดก่อน ไม่เว้นหลัง
+% หัวข้อย่อยตัวหนาเอน ชิดซ้าย เว้นหนึ่งบรรทัดก่อน ไม่เว้นหลัง
+\usepackage{titlesec}
+\titleformat{\section}{\filcenter\normalsize\bfseries}{\thesection.}{0.4em}{}
+\titleformat{\subsection}{\normalsize\bfseries\itshape}{\thesubsection}{0.4em}{}
+\titlespacing*{\section}{0pt}{\baselineskip}{0pt}
+\titlespacing*{\subsection}{0pt}{\baselineskip}{0pt}
+
+% สถิติเขียนด้วยตัวอักษรของเนื้อหา Sarabun ไม่มีอักษรกรีก จึงใช้โหมดสูตรเฉพาะตัวกรีก
+\newcommand{\stat}[1]{\textit{#1}}
+\newcommand{\Rsq}{\stat{R}\textsuperscript{2}}
+\newcommand{\etasq}{$\eta^{2}$}
+
+% ---------------------------------------------------------------
+% การอ้างอิงแบบ IEEE เรียงเลขตามลำดับที่อ้างถึง ใช้ .bib ร่วมกับเค้าโครงและรายงาน
+% cite ทำให้ \cite{a,b} ออกมาเป็น [4], [5] ตามรูปแบบ IEEE
+% ---------------------------------------------------------------
+\usepackage{cite}
+\renewcommand{\citepunct}{], [}
+\renewcommand{\citedash}{]--[}
+\usepackage{xurl}
+\usepackage[hidelinks]{hyperref}
+\renewcommand{\refname}{เอกสารอ้างอิง}
+% รายการอ้างอิงชิดซ้ายตามแม่แบบ URL ยาว ๆ จะได้ไม่ดันช่องไฟให้ห่าง
+\usepackage{etoolbox}
+\apptocmd{\thebibliography}{\raggedright\setlength{\itemsep}{0pt}\setlength{\parsep}{0pt}}{}{}
+
+% \bstctlcite จาก IEEEtran.cls -- ใช้ตั้งให้ผู้แต่งเกิน 6 คนแสดงเป็น et al.
+\makeatletter
+\def\bstctlcite{\@ifnextchar[{\@bstctlcite}{\@bstctlcite[@auxout]}}
+\def\@bstctlcite[#1]#2{\@bsphack
+    \@for\@citeb:=#2\do{%
+        \edef\@citeb{\expandafter\@iden\@citeb}%
+        \if@filesw\immediate\write\csname #1\endcsname{\string\citation{\@citeb}}\fi}%
+    \@esphack}
+\makeatother
+
+\begin{document}
+\bstctlcite{IEEEexample:BSTcontrol}
+
+% ---- ชื่อเรื่องกว้างเต็มหน้า ห่างขอบบน 30 มม. ----
+\twocolumn[{%
+    \centering
+    {\fontsize{20pt}{26pt}\selectfont\bfseries
+        การศึกษาความสัมพันธ์ระหว่างพฤติกรรมการใช้โซเชียลมีเดีย\\
+        กับสุขภาวะทางจิตของนักศึกษา\par
+        A STUDY OF THE RELATIONSHIP BETWEEN SOCIAL MEDIA USAGE BEHAVIOR\\
+        AND MENTAL WELL-BEING AMONG UNIVERSITY STUDENTS\par}
+    \par\vspace{\baselineskip}
+    \ifblind\else
+        พัชรพล พันทวี \quad กันติชา ชื่นปัญญาวุฒิ\par
+        \vspace{\baselineskip}
+        {\small สาขาวิชาวิทยาการคอมพิวเตอร์ วิทยาลัยการคอมพิวเตอร์ มหาวิทยาลัยขอนแก่น\par}
+        \vspace{\baselineskip}
+    \fi
+}]
+
+\input{section/00-abstract.tex}
+\input{section/01-introduction.tex}
+\input{section/02-related-work.tex}
+\input{section/03-methodology.tex}
+\input{section/04-results.tex}
+\input{section/05-conclusion.tex}
+
+\bibliographystyle{IEEEtran}
+\bibliography{ieee-control,../references}
+
+\end{document}

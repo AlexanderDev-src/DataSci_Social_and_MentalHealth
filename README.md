@@ -23,6 +23,7 @@
 - เก็บข้อมูลเสร็จแล้ว ได้คำตอบ 121 ชุด ใช้วิเคราะห์ 107 คนที่ผ่านข้อดักความใส่ใจ (หญิง 59 ชาย 48)
 - วิเคราะห์ครบทั้ง 7 คำถามวิจัย
 - รายงาน 5 บทเขียนเสร็จแล้ว อยู่ระหว่างตรวจทาน: `Full-report-0209Update.pdf`
+- บทความวิชาการรูปแบบ AUCC2027 (ภาษาไทย 7 หน้า ไม่ใส่ชื่อผู้แต่งตามแม่แบบ): `report_aucc/`
 
 ### ที่มาของข้อมูล
 
@@ -66,6 +67,7 @@
 | `Full-report-0209Update.pdf` | รายงานฉบับสมบูรณ์ 5 บท |
 | `main.tex`, `chapter/` | ต้นฉบับ LaTeX ของเค้าโครง |
 | `report/` | ต้นฉบับ LaTeX ของรายงาน (`report/chapter/` มีปก บทคัดย่อ และบทที่ 1 ถึง 5) |
+| `report_aucc/` | บทความวิชาการรูปแบบ AUCC2027 ไม่เกิน 8 หน้า เขียนด้วย LaTeX ตามแม่แบบ Word ของการประชุม (`template/`) รูปขนาดคอลัมน์สร้างด้วย `make_figures.py` |
 | `references.bib` | รายการอ้างอิง ใช้ร่วมกันทั้งเค้าโครงและรายงาน |
 | `figures/` | รูปทั้งหมดที่ notebook ใน `codingpy/` สร้างขึ้น |
 | `Info.md` | ร่างเนื้อหาเค้าโครงก่อนแปลงเป็น LaTeX |
@@ -101,6 +103,7 @@
 ```bash
 latexmk -xelatex main.tex                 # เค้าโครง -> main.pdf
 cd report && latexmk -xelatex main.tex    # รายงาน -> report/main.pdf
+cd report_aucc && latexmk -xelatex main.tex    # บทความ AUCC -> report_aucc/main.pdf
 ```
 
 ### วิธีรันโค้ดวิเคราะห์
@@ -149,6 +152,7 @@ the full report, the analysis code and the figures.
 - Data collection finished: 121 responses, 107 analysed after removing attention-check failures (59 female, 48 male)
 - All seven research questions analysed
 - Five-chapter report written and under review: `Full-report-0209Update.pdf`
+- AUCC2027 conference paper (Thai, 7 pages, anonymous as the template requires): `report_aucc/`
 
 ### About the data
 
@@ -191,6 +195,7 @@ Chapter 4 of the report has the full results.
 | `Full-report-0209Update.pdf` | Finished five-chapter report |
 | `main.tex`, `chapter/` | LaTeX source of the proposal |
 | `report/` | LaTeX source of the report (`report/chapter/` holds the cover, abstract and chapters 1 to 5) |
+| `report_aucc/` | AUCC2027 conference paper, 8 pages at most, in LaTeX following the conference Word template (`template/`); `make_figures.py` draws the column-width figures |
 | `references.bib` | Bibliography shared by the proposal and the report |
 | `figures/` | Every figure the notebook in `codingpy/` produces |
 | `Info.md` | Proposal draft before conversion to LaTeX |
@@ -226,6 +231,7 @@ Requires XeLaTeX and the **TH Sarabun New** font.
 ```bash
 latexmk -xelatex main.tex                 # proposal -> main.pdf
 cd report && latexmk -xelatex main.tex    # report -> report/main.pdf
+cd report_aucc && latexmk -xelatex main.tex    # AUCC paper -> report_aucc/main.pdf
 ```
 
 ### Running the analysis code
