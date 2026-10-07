@@ -71,30 +71,31 @@
 | `references.bib` | รายการอ้างอิง ใช้ร่วมกันทั้งเค้าโครงและรายงาน |
 | `figures/` | รูปทั้งหมดที่ notebook ใน `codingpy/` สร้างขึ้น |
 | `Info.md` | ร่างเนื้อหาเค้าโครงก่อนแปลงเป็น LaTeX |
-| `codingpy/` | โค้ด Python ทั้งหมด อยู่ใน notebook ไฟล์เดียว (จัดการแพ็กเกจด้วย uv) |
+| `codingpy/` | โค้ด Python ทั้งหมด แบ่งเป็น notebook เรื่องละไฟล์ (จัดการแพ็กเกจด้วย uv) |
 | `codingpy/data/` | ข้อมูลดิบและข้อมูลที่ทำความสะอาดแล้ว **ไม่ถูก commit** |
 | `Website_for_presentation/` | เว็บสไลด์นำเสนอที่ปรับค่ากราฟได้ระหว่างนำเสนอ (Astro + React) วิธีรันอยู่ใน README ของโฟลเดอร์ |
 
 ### โค้ดใน `codingpy/`
 
-โค้ดทั้งหมดอยู่ใน `codingpy/social_media_mental_health.ipynb` ไฟล์เดียว เรียงตามขั้นตอนตั้งแต่นำเข้าข้อมูลจนถึงผลลัพธ์
-มีคำอธิบายกำกับทุกขั้น และรันจากเซลล์แรกถึงเซลล์สุดท้ายได้โดยไม่ต้องมีไฟล์ `.py` ประกอบ
+โค้ดแบ่งเป็น notebook เรื่องละไฟล์ เรียงเลขตามขั้นตอนตั้งแต่นำเข้าข้อมูลจนถึงผลลัพธ์ และมีคำอธิบายกำกับทุกขั้น
+แต่ละไฟล์เปิดและรันแยกกันได้ ขอเพียงรัน `01_data_preparation.ipynb` ก่อนหนึ่งครั้งเพื่อสร้าง `data/data_clean.csv` ที่ไฟล์อื่นอ่าน
+ค่าตั้งที่ใช้ร่วมกันอยู่ใน `common.py` ซึ่งทุก notebook import
 
-| หัวข้อใน notebook | หน้าที่ |
+| ไฟล์ใน `codingpy/` | หน้าที่ |
 |---|---|
-| 1 ตั้งค่า | ไลบรารี พาธข้อมูล ค่าคงที่ร่วม (seed = 42) และฟอนต์ภาษาไทยของกราฟ |
-| 2 นำเข้าข้อมูล | อ่านไฟล์คำตอบแบบสอบถาม `data/data.csv` |
-| 3 เตรียมข้อมูล | แปลงคำตอบภาษาไทยเป็นป้ายภาษาอังกฤษและรหัสตัวเลขสำหรับ SPSS แปลงข้อความเป็นตัวเลข คิดคะแนน DASS-21 และตัดผู้ไม่ผ่านข้อดัก |
-| 4 ความเชื่อมั่นของแบบวัด | ค่าแอลฟาของครอนบาคแต่ละมิติ พร้อมช่วงความเชื่อมั่นแบบ bootstrap |
-| 5 คำถามข้อ 1 ถึง 3 | scatter plot และสหสัมพันธ์ของชั่วโมงใช้งานและการติดตามข่าวกับสามมิติ พร้อม partial r |
-| 6 คำถามข้อ 4 | เทียบคะแนนระหว่าง 4 กลุ่มเนื้อหา (Kruskal-Wallis) |
-| 7 คำถามข้อ 5 | ชั่วโมงใช้งานกับการนอน และพฤติกรรมในชีวิตประจำวันกับสามมิติ |
-| 8 คำถามข้อ 6 และ 7 | การถดถอยแบบลำดับขั้น VIF การตรวจข้อตกลงเบื้องต้น และ partial regression plot |
-| 9 เกรดเฉลี่ยและสภาพการเงิน | เกรดเฉลี่ยกับสามมิติ และสภาพการเงิน 3 กลุ่มกับสามมิติ (ANOVA) |
-| 10 การทดสอบสมมติฐาน | การทดสอบสมมติฐาน 4 แบบตามที่รายวิชากำหนด |
-| 11 กราฟ 3 มิติและ what-if | โซเชียลมีเดีย × การนอน → คะแนน DASS รวม และแอนิเมชันเพิ่มชั่วโมงใช้งานทีละชั่วโมง (ใช้ผู้ตอบทั้ง 121 คน) |
-| 12 ส่งออก | ค่าสถิติรวม (ไม่มีข้อมูลรายคน) ให้เว็บใน `Website_for_presentation/` |
-| 13 สรุปผล | ผลของคำถามทั้ง 7 ข้อ ข้อค้นพบหลัก และข้อจำกัด |
+| `common.py` | พาธข้อมูล ค่าคงที่ร่วม (seed = 42) ฟอนต์ภาษาไทยของกราฟ และฟังก์ชันที่ใช้มากกว่าหนึ่งไฟล์ |
+| `00_overview.ipynb` | บทนำ คำถามวิจัย แหล่งข้อมูล และวิธีรัน |
+| `01_data_preparation.ipynb` | อ่านไฟล์คำตอบ `data/data.csv` แปลงคำตอบภาษาไทยเป็นป้ายภาษาอังกฤษและรหัสตัวเลขสำหรับ SPSS แปลงข้อความเป็นตัวเลข คิดคะแนน DASS-21 และตัดผู้ไม่ผ่านข้อดัก |
+| `02_reliability.ipynb` | ค่าแอลฟาของครอนบาคแต่ละมิติ พร้อมช่วงความเชื่อมั่นแบบ bootstrap |
+| `03_q1_q3_correlation.ipynb` | คำถามข้อ 1 ถึง 3: scatter plot และสหสัมพันธ์ของชั่วโมงใช้งานและการติดตามข่าวกับสามมิติ พร้อม partial r |
+| `04_q4_content_type.ipynb` | คำถามข้อ 4: เทียบคะแนนระหว่าง 4 กลุ่มเนื้อหา (Kruskal-Wallis) |
+| `05_q5_sleep_habits.ipynb` | คำถามข้อ 5: ชั่วโมงใช้งานกับการนอน และพฤติกรรมในชีวิตประจำวันกับสามมิติ |
+| `06_q6_q7_regression.ipynb` | คำถามข้อ 6 และ 7: การถดถอยแบบลำดับขั้น VIF การตรวจข้อตกลงเบื้องต้น และ partial regression plot |
+| `07_gpa_finance.ipynb` | เกรดเฉลี่ยกับสามมิติ และสภาพการเงิน 3 กลุ่มกับสามมิติ (ANOVA) |
+| `08_hypothesis_tests.ipynb` | การทดสอบสมมติฐาน 4 แบบตามที่รายวิชากำหนด |
+| `09_3d_what_if.ipynb` | โซเชียลมีเดีย × การนอน → คะแนน DASS รวม และแอนิเมชันเพิ่มชั่วโมงใช้งานทีละชั่วโมง (ใช้ผู้ตอบทั้ง 121 คน) |
+| `10_export_website.ipynb` | ส่งออกค่าสถิติรวม (ไม่มีข้อมูลรายคน) ให้เว็บใน `Website_for_presentation/` |
+| `11_summary.ipynb` | ผลของคำถามทั้ง 7 ข้อ ข้อค้นพบหลัก และข้อจำกัด |
 
 ### วิธีคอมไพล์เอกสาร
 
@@ -114,19 +115,20 @@ cd report_aucc && latexmk -xelatex main.tex    # บทความ AUCC -> repo
 
 ```bash
 uv sync
-uv run jupyter lab codingpy/social_media_mental_health.ipynb    # แล้วเลือก Run > Run All Cells
+uv run jupyter lab codingpy/    # เปิดไฟล์ที่ต้องการ แล้วเลือก Run > Run All Cells
 ```
 
-หรือรันทั้งไฟล์โดยไม่เปิดหน้าจอ
+หรือรันทุกไฟล์ตามลำดับเลขโดยไม่เปิดหน้าจอ
 
 ```bash
-uv run jupyter nbconvert --to notebook --execute --inplace codingpy/social_media_mental_health.ipynb
+uv run jupyter nbconvert --to notebook --execute --inplace codingpy/[0-9]*.ipynb
 ```
 
 Notebook อ่าน `data/` และเขียนรูปลง `../figures/` เปิดจากโฟลเดอร์ `codingpy/` หรือจากรากของ repo ก็ได้
 
-บน Google Colab ให้อัปโหลดไฟล์ notebook แล้วเลือก Runtime > Run all
-เซลล์นำเข้าข้อมูลจะเปิดช่องให้อัปโหลด `data.csv` และรูปจะถูกเขียนลงโฟลเดอร์ `figures/` ข้าง notebook
+บน Google Colab หนึ่ง notebook คือหนึ่ง session จึงต้องอัปโหลด `common.py` เข้า session ก่อนรันทุกครั้ง
+`01_data_preparation.ipynb` จะเปิดช่องให้อัปโหลด `data.csv` ส่วนไฟล์ `02` เป็นต้นไปต้องมี `data/data_clean.csv`
+ที่ไฟล์ `01` เขียนไว้อยู่ใน session ด้วย รูปจะถูกเขียนลงโฟลเดอร์ `figures/` ข้าง notebook
 
 ### ข้อมูลและความเป็นส่วนตัว
 
@@ -197,32 +199,33 @@ Chapter 4 of the report has the full results.
 | `report/` | LaTeX source of the report (`report/chapter/` holds the cover, abstract and chapters 1 to 5) |
 | `report_aucc/` | AUCC2027 conference paper, 8 pages at most, in LaTeX following the conference Word template (`template/`); `make_figures.py` draws the column-width figures |
 | `references.bib` | Bibliography shared by the proposal and the report |
-| `figures/` | Every figure the notebook in `codingpy/` produces |
+| `figures/` | Every figure the notebooks in `codingpy/` produce |
 | `Info.md` | Proposal draft before conversion to LaTeX |
-| `codingpy/` | All Python code, in a single notebook (packages managed with uv) |
+| `codingpy/` | All Python code, one notebook per topic (packages managed with uv) |
 | `codingpy/data/` | Raw and cleaned survey data, **not committed** |
 | `Website_for_presentation/` | Presentation site with charts the presenter adjusts live (Astro + React); its README explains how to run it |
 
 ### Code in `codingpy/`
 
-All of the code lives in one file, `codingpy/social_media_mental_health.ipynb`, ordered from data import to results.
-Every step is explained in the notebook, and it runs from the first cell to the last with no `.py` files beside it.
+The code is split into one notebook per topic, numbered in working order from data import to results, with every step explained.
+Each file opens and runs on its own once `01_data_preparation.ipynb` has run and written `data/data_clean.csv`, which the others read.
+The shared setup lives in `common.py`, which every notebook imports.
 
-| Notebook section | Purpose |
+| File in `codingpy/` | Purpose |
 |---|---|
-| 1 Setup | Libraries, data paths, shared constants (seed 42) and the Thai font for the figures |
-| 2 Data import | Reads the survey export, `data/data.csv` |
-| 3 Data preparation | Thai answers to English labels and SPSS codes, free text to numbers, DASS-21 scoring, and dropping attention-check failures |
-| 4 Scale reliability | Cronbach's alpha per dimension with a bootstrap confidence interval |
-| 5 Questions 1 to 3 | Scatter plots and correlations of hours of use and news-following against the three dimensions, with partial r |
-| 6 Question 4 | Scores across the four content groups (Kruskal-Wallis) |
-| 7 Question 5 | Hours of use against sleep, and daily habits against the three dimensions |
-| 8 Questions 6 and 7 | Hierarchical regression, VIF, assumption checks and the partial regression plot |
-| 9 GPA and financial sufficiency | GPA against the three dimensions, and the three money groups against the three dimensions (ANOVA) |
-| 10 Hypothesis tests | The four hypothesis tests the course requires |
-| 11 3D plot and what-if | Social media × sleep → DASS-21 total, and the animation that raises use one hour at a time (all 121 respondents) |
-| 12 Export | Writes the summary statistics (no respondent rows) that `Website_for_presentation/` draws from |
-| 13 Conclusion | The answer to each of the seven questions, the main findings and the limitations |
+| `common.py` | Data paths, shared constants (seed 42), the Thai font for the figures, and the helpers more than one notebook uses |
+| `00_overview.ipynb` | Introduction, research questions, data source and how to run |
+| `01_data_preparation.ipynb` | Reads the survey export `data/data.csv`; Thai answers to English labels and SPSS codes, free text to numbers, DASS-21 scoring, and dropping attention-check failures |
+| `02_reliability.ipynb` | Cronbach's alpha per dimension with a bootstrap confidence interval |
+| `03_q1_q3_correlation.ipynb` | Questions 1 to 3: scatter plots and correlations of hours of use and news-following against the three dimensions, with partial r |
+| `04_q4_content_type.ipynb` | Question 4: scores across the four content groups (Kruskal-Wallis) |
+| `05_q5_sleep_habits.ipynb` | Question 5: hours of use against sleep, and daily habits against the three dimensions |
+| `06_q6_q7_regression.ipynb` | Questions 6 and 7: hierarchical regression, VIF, assumption checks and the partial regression plot |
+| `07_gpa_finance.ipynb` | GPA against the three dimensions, and the three money groups against the three dimensions (ANOVA) |
+| `08_hypothesis_tests.ipynb` | The four hypothesis tests the course requires |
+| `09_3d_what_if.ipynb` | Social media × sleep → DASS-21 total, and the animation that raises use one hour at a time (all 121 respondents) |
+| `10_export_website.ipynb` | Writes the summary statistics (no respondent rows) that `Website_for_presentation/` draws from |
+| `11_summary.ipynb` | The answer to each of the seven questions, the main findings and the limitations |
 
 ### Building the documents
 
@@ -242,19 +245,20 @@ Put the survey export at `codingpy/data/data.csv` (it is not in the repository),
 
 ```bash
 uv sync
-uv run jupyter lab codingpy/social_media_mental_health.ipynb    # then Run > Run All Cells
+uv run jupyter lab codingpy/    # open the file you want, then Run > Run All Cells
 ```
 
-Or execute the whole file without opening it:
+Or execute every file in numbered order without opening them:
 
 ```bash
-uv run jupyter nbconvert --to notebook --execute --inplace codingpy/social_media_mental_health.ipynb
+uv run jupyter nbconvert --to notebook --execute --inplace codingpy/[0-9]*.ipynb
 ```
 
-The notebook reads `data/` and writes figures to `../figures/`; open it from `codingpy/` or from the repository root.
+The notebooks read `data/` and write figures to `../figures/`; open them from `codingpy/` or from the repository root.
 
-On Google Colab, upload the notebook and choose Runtime > Run all.
-The data-import cell opens an upload prompt for `data.csv`, and figures go to a `figures/` folder beside the notebook.
+On Google Colab one notebook is one session, so upload `common.py` into the session before each run.
+`01_data_preparation.ipynb` opens an upload prompt for `data.csv`; from `02` onwards the session also needs the
+`data/data_clean.csv` that `01` wrote. Figures go to a `figures/` folder beside the notebook.
 
 ### Data and privacy
 

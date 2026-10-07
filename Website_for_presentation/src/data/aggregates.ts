@@ -1,6 +1,6 @@
 /**
- * Typed view of generated/aggregates.json, which section 12 of
- * codingpy/social_media_mental_health.ipynb writes from the cleaned survey. It holds
+ * Typed view of generated/aggregates.json, which
+ * codingpy/10_export_website.ipynb writes from the cleaned survey. It holds
  * summary statistics only, never a row per respondent. Re-run that notebook to
  * refresh the numbers.
  */

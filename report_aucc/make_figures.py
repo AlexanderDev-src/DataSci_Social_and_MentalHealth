@@ -1,6 +1,6 @@
 """Figures for the AUCC paper, sized to one 82 mm column.
 
-The notebook in codingpy/ draws the same results for a full A4 page, with
+The notebooks in codingpy/ draw the same results for a full A4 page, with
 titles inside the picture. A conference column is less than half that width,
 so this script draws them again with larger text and no titles; the caption
 in section/04-results.tex carries the title instead.
