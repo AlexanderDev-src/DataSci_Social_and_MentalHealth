@@ -1,15 +1,28 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 const SLIDE_SELECTOR = "[data-slide]";
 
 /**
- * Keys a slider or button needs for itself; they only change slides when no control
- * is focused. PageUp and PageDown always change slides, since that is what a clicker sends.
+ * Keys a focused control may need for itself. PageUp and PageDown always change slides,
+ * since that is what a clicker sends.
  */
 const CONTROL_KEYS = new Set(["ArrowLeft", "ArrowRight", "ArrowUp", "ArrowDown", "Home", "End", " "]);
 
-function isControl(target: EventTarget | null): boolean {
-  return target instanceof HTMLElement && target.closest("input, button, select, textarea, [contenteditable]") !== null;
+/** Fields that read typed text keep every control key. */
+const TEXT_FIELD = "textarea, select, [contenteditable], input:not([type=range]):not([type=radio]):not([type=checkbox])";
+
+/**
+ * Whether the focused element should keep this key instead of changing slides.
+ * A button only needs Space. A slider or radio keeps the arrows when reached with the
+ * keyboard, but after a mouse click the arrows go back to the slides, so a presenter
+ * who clicks a control is not stuck on that slide.
+ */
+function controlOwnsKey(target: EventTarget | null, key: string, focusedByPointer: boolean): boolean {
+  if (!CONTROL_KEYS.has(key) || !(target instanceof HTMLElement)) return false;
+  if (target.closest(TEXT_FIELD)) return true;
+  if (target.closest("button")) return key === " ";
+  if (target.matches("input")) return key === " " || !focusedByPointer;
+  return false;
 }
 
 function prefersReducedMotion(): boolean {
@@ -66,10 +79,33 @@ export function useDeckNavigation(): DeckNavigation {
   const next = useCallback(() => goTo(index + 1), [goTo, index]);
   const previous = useCallback(() => goTo(index - 1), [goTo, index]);
 
+  // browsers count a clicked slider as :focus-visible, so track where focus came from
+  const focusedByPointer = useRef(false);
+  useEffect(() => {
+    let pointerDown = false;
+    const onPointer = () => {
+      pointerDown = true;
+    };
+    const onTab = (event: KeyboardEvent) => {
+      if (event.key === "Tab") pointerDown = false;
+    };
+    const onFocus = () => {
+      focusedByPointer.current = pointerDown;
+    };
+    window.addEventListener("pointerdown", onPointer, true);
+    window.addEventListener("keydown", onTab, true);
+    window.addEventListener("focusin", onFocus);
+    return () => {
+      window.removeEventListener("pointerdown", onPointer, true);
+      window.removeEventListener("keydown", onTab, true);
+      window.removeEventListener("focusin", onFocus);
+    };
+  }, []);
+
   useEffect(() => {
     const onKey = (event: KeyboardEvent) => {
       if (event.altKey || event.ctrlKey || event.metaKey) return;
-      if (CONTROL_KEYS.has(event.key) && isControl(event.target)) return;
+      if (controlOwnsKey(event.target, event.key, focusedByPointer.current)) return;
 
       const actions: Record<string, () => void> = {
         ArrowRight: next,
